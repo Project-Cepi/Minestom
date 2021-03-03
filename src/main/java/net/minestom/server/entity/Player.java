@@ -95,7 +95,7 @@ public class Player extends LivingEntity implements CommandSender, Localizable {
     protected final Set<Entity> viewableEntities = new CopyOnWriteArraySet<>();
 
     private int latency;
-    private JsonMessage displayName;
+    private Component displayName;
     private PlayerSkin skin;
 
     private DimensionType dimensionType;
@@ -477,15 +477,15 @@ public class Player extends LivingEntity implements CommandSender, Localizable {
     public void kill() {
         if (!isDead()) {
 
-            JsonMessage deathText;
-            JsonMessage chatMessage;
+            Component deathText;
+            Component chatMessage;
 
             // get death screen text to the killed player
             {
                 if (lastDamageSource != null) {
                     deathText = lastDamageSource.buildDeathScreenText(this);
                 } else { // may happen if killed by the server without applying damage
-                    deathText = ColoredText.of("Killed by poor programming.");
+                    deathText = Component.text("Killed by poor programming.");
                 }
             }
 
@@ -494,7 +494,7 @@ public class Player extends LivingEntity implements CommandSender, Localizable {
                 if (lastDamageSource != null) {
                     chatMessage = lastDamageSource.buildDeathMessage(this);
                 } else { // may happen if killed by the server without applying damage
-                    chatMessage = ColoredText.of(getUsername() + " was killed by poor programming.");
+                    chatMessage = Component.text(getUsername() + " was killed by poor programming.");
                 }
             }
 
@@ -507,13 +507,13 @@ public class Player extends LivingEntity implements CommandSender, Localizable {
 
             // #buildDeathScreenText can return null, check here
             if (deathText != null) {
-                CombatEventPacket deathPacket = CombatEventPacket.death(this, null, deathText);
+                CombatEventPacket deathPacket = CombatEventPacket.death(this, null, MinecraftServer.getSerializationManager().serialize(deathText, this));
                 playerConnection.sendPacket(deathPacket);
             }
 
             // #buildDeathMessage can return null, check here
             if (chatMessage != null) {
-                MinecraftServer.getConnectionManager().broadcastMessage(chatMessage);
+                MinecraftServer.getConnectionManager().sendMessage(chatMessage);
             }
 
         }
@@ -763,22 +763,6 @@ public class Player extends LivingEntity implements CommandSender, Localizable {
         sendPluginMessage(channel, bytes);
     }
 
-    @Override
-    public void sendMessage(@NotNull String message) {
-        sendMessage(ColoredText.of(message));
-    }
-
-    /**
-     * Sends a message to the player.
-     *
-     * @param message the message to send,
-     *                you can use {@link ColoredText} and/or {@link RichMessage} to create it easily
-     */
-    @Override
-    public void sendMessage(@NotNull JsonMessage message) {
-        sendJsonMessage(message.toString());
-    }
-
     /**
      * Sends a legacy message with the specified color char.
      *
@@ -816,7 +800,7 @@ public class Player extends LivingEntity implements CommandSender, Localizable {
 
     @Override
     public void sendMessage(@NotNull Identity source, @NotNull Component message, @NotNull MessageType type) {
-        ChatMessagePacket chatMessagePacket = new ChatMessagePacket(MinecraftServer.getSerializationManager().serialize(message), type, source.uuid());
+        ChatMessagePacket chatMessagePacket = new ChatMessagePacket(MinecraftServer.getSerializationManager().serialize(message, this), type, source.uuid());
         playerConnection.sendPacket(chatMessagePacket);
     }
 
@@ -1020,8 +1004,8 @@ public class Player extends LivingEntity implements CommandSender, Localizable {
     @Override
     public void sendPlayerListHeaderAndFooter(@NotNull Component header, @NotNull Component footer) {
         PlayerListHeaderAndFooterPacket packet = new PlayerListHeaderAndFooterPacket();
-        packet.header = MinecraftServer.getSerializationManager().serialize(header);
-        packet.footer = MinecraftServer.getSerializationManager().serialize(footer);
+        packet.header = MinecraftServer.getSerializationManager().serialize(header, this);
+        packet.footer = MinecraftServer.getSerializationManager().serialize(footer, this);
         playerConnection.sendPacket(packet);
     }
 
@@ -1102,7 +1086,7 @@ public class Player extends LivingEntity implements CommandSender, Localizable {
 
     @Override
     public void sendActionBar(@NotNull Component message) {
-        TitlePacket titlePacket = new TitlePacket(TitlePacket.Action.SET_ACTION_BAR, MinecraftServer.getSerializationManager().serialize(message));
+        TitlePacket titlePacket = new TitlePacket(TitlePacket.Action.SET_ACTION_BAR, MinecraftServer.getSerializationManager().serialize(message, this));
         playerConnection.sendPacket(titlePacket);
     }
 
@@ -1310,9 +1294,20 @@ public class Player extends LivingEntity implements CommandSender, Localizable {
      * Gets the player display name in the tab-list.
      *
      * @return the player display name, null means that {@link #getUsername()} is displayed
+     * @deprecated Use {@link #getDisplayName()}
      */
     @Nullable
-    public JsonMessage getDisplayName() {
+    public JsonMessage getDisplayNameJson() {
+        return JsonMessage.fromComponent(displayName);
+    }
+
+    /**
+     * Gets the player display name in the tab-list.
+     *
+     * @return the player display name, null means that {@link #getUsername()} is displayed
+     */
+    @Nullable
+    public Component getDisplayName() {
         return displayName;
     }
 
@@ -1322,12 +1317,25 @@ public class Player extends LivingEntity implements CommandSender, Localizable {
      * Sets to null to show the player username.
      *
      * @param displayName the display name, null to display the username
+     * @deprecated Use {@link #setDisplayName(Component)}
      */
+    @Deprecated
     public void setDisplayName(@Nullable JsonMessage displayName) {
+        this.setDisplayName(displayName == null ? null : displayName.asComponent());
+    }
+
+    /**
+     * Changes the player display name in the tab-list.
+     * <p>
+     * Sets to null to show the player username.
+     *
+     * @param displayName the display name, null to display the username
+     */
+    public void setDisplayName(@Nullable Component displayName) {
         this.displayName = displayName;
 
         PlayerInfoPacket infoPacket = new PlayerInfoPacket(PlayerInfoPacket.Action.UPDATE_DISPLAY_NAME);
-        infoPacket.playerInfos.add(new PlayerInfoPacket.UpdateDisplayName(getUuid(), displayName));
+        infoPacket.playerInfos.add(new PlayerInfoPacket.UpdateDisplayName(getUuid(), MinecraftServer.getSerializationManager().serialize(displayName)));
         sendPacketToViewersAndSelf(infoPacket);
     }
 
@@ -1906,9 +1914,9 @@ public class Player extends LivingEntity implements CommandSender, Localizable {
         // Packet type depends on the current player connection state
         final ServerPacket disconnectPacket;
         if (connectionState == ConnectionState.LOGIN) {
-            disconnectPacket = new LoginDisconnectPacket(MinecraftServer.getSerializationManager().serialize(component));
+            disconnectPacket = new LoginDisconnectPacket(MinecraftServer.getSerializationManager().serialize(component, this));
         } else {
-            disconnectPacket = new DisconnectPacket(MinecraftServer.getSerializationManager().serialize(component));
+            disconnectPacket = new DisconnectPacket(MinecraftServer.getSerializationManager().serialize(component, this));
         }
 
         if (playerConnection instanceof NettyPlayerConnection) {
@@ -2533,7 +2541,7 @@ public class Player extends LivingEntity implements CommandSender, Localizable {
 
         PlayerInfoPacket.AddPlayer addPlayer =
                 new PlayerInfoPacket.AddPlayer(getUuid(), getUsername(), getGameMode(), getLatency());
-        addPlayer.displayName = displayName;
+        addPlayer.displayName = MinecraftServer.getSerializationManager().serialize(displayName);
 
         // Skin support
         if (skin != null) {
