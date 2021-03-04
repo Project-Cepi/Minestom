@@ -1,5 +1,7 @@
 package demo.commands;
 
+import net.minestom.server.chat.JsonMessage;
+import net.kyori.adventure.text.Component;
 import net.minestom.server.command.CommandSender;
 import net.minestom.server.command.builder.Command;
 import net.minestom.server.command.builder.CommandContext;
@@ -33,7 +35,7 @@ public class TestCommand extends Command {
     }
 
     private void usage(CommandSender sender, CommandContext context) {
-        sender.sendMessage("Incorrect usage");
+        sender.sendMessage(Component.text("Incorrect usage"));
     }
 
 }
