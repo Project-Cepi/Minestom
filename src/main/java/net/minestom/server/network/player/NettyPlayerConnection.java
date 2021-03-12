@@ -14,6 +14,7 @@ import net.minestom.server.network.ConnectionState;
 import net.minestom.server.network.netty.NettyServer;
 import net.minestom.server.network.netty.codec.PacketCompressor;
 import net.minestom.server.network.netty.packet.FramedPacket;
+import net.minestom.server.network.packet.server.ComponentHoldingServerPacket;
 import net.minestom.server.network.packet.server.ServerPacket;
 import net.minestom.server.network.packet.server.login.SetCompressionPacket;
 import net.minestom.server.utils.PacketUtils;
@@ -169,7 +170,12 @@ public class NettyPlayerConnection extends PlayerConnection {
             }
             return;
         } else if (message instanceof ServerPacket) {
-            final ServerPacket serverPacket = (ServerPacket) message;
+            ServerPacket serverPacket = (ServerPacket) message;
+
+            if (getPlayer() != null && serverPacket instanceof ComponentHoldingServerPacket) {
+                serverPacket = ((ComponentHoldingServerPacket) serverPacket).copyWithOperator(component -> MinecraftServer.getSerializationManager().translate(component, getPlayer()));
+            }
+
             final ByteBuf buffer = PacketUtils.createFramedPacket(serverPacket, true);
             synchronized (tickBuffer) {
                 tickBuffer.writeBytes(buffer);
