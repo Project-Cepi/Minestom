@@ -32,22 +32,21 @@ public class LoginStartPacket implements ClientPreplayPacket {
 
         final boolean isNettyClient = connection instanceof NettyPlayerConnection;
 
-        // Cache the login username and start compression if enabled
-        if (isNettyClient) {
-            NettyPlayerConnection nettyPlayerConnection = (NettyPlayerConnection) connection;
-            nettyPlayerConnection.UNSAFE_setLoginUsername(username);
-
-            // Compression
-            final int threshold = MinecraftServer.getCompressionThreshold();
-            if (threshold > 0) {
-                nettyPlayerConnection.startCompression();
-            }
-        }
-
-        // Proxy support (only for netty clients)
         if (isNettyClient) {
             final NettyPlayerConnection nettyPlayerConnection = (NettyPlayerConnection) connection;
 
+            // Cache the login username and start compression if enabled
+            {
+                nettyPlayerConnection.UNSAFE_setLoginUsername(username);
+
+                // Compression
+                final int threshold = MinecraftServer.getCompressionThreshold();
+                if (threshold > 0) {
+                    nettyPlayerConnection.startCompression();
+                }
+            }
+
+            // Proxy support (only for netty clients)
             {
                 // Velocity support
                 if (VelocityProxy.isEnabled()) {
@@ -67,7 +66,6 @@ public class LoginStartPacket implements ClientPreplayPacket {
                     return;
                 }
             }
-
         }
 
         if (MojangAuth.isEnabled() && isNettyClient) {
