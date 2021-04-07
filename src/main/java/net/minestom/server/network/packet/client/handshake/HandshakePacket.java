@@ -67,11 +67,10 @@ public class HandshakePacket implements ClientPreplayPacket {
                             ((java.net.InetSocketAddress) connection.getRemoteAddress()).getPort());
                     nettyPlayerConnection.setRemoteAddress(socketAddress);
 
-                    UUID playerUuid = UUID.fromString(
-                            split[2]
-                                    .replaceFirst(
-                                            "(\\p{XDigit}{8})(\\p{XDigit}{4})(\\p{XDigit}{4})(\\p{XDigit}{4})(\\p{XDigit}+)", "$1-$2-$3-$4-$5"
-                                    )
+                    // Parses an unsigned (no hyphen) UUID string by splitting it into its 2 primitive longs.
+                    UUID playerUuid = new UUID(
+                            Long.parseUnsignedLong(split[2].substring(0, 16), 16),
+                            Long.parseUnsignedLong(split[2].substring(16), 16)
                     );
                     PlayerSkin playerSkin = null;
 
