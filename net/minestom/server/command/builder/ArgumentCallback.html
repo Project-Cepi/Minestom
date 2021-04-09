@@ -126,7 +126,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>This is a functional interface and can therefore be used as the assignment target for a lambda expression or method reference.</dd>
 </dl>
 <hr>
-<pre>@FunctionalInterface
+<pre><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/FunctionalInterface.html?is-external=true" title="class or interface in java.lang" class="externalLink">@FunctionalInterface</a>
 public interface <span class="typeNameLabel">ArgumentCallback</span></pre>
 <div class="block">Callback executed when an error is found within the <a href="arguments/Argument.html" title="class in net.minestom.server.command.builder.arguments"><code>Argument</code></a>.</div>
 </li>
@@ -151,8 +151,8 @@ public interface <span class="typeNameLabel">ArgumentCallback</span></pre>
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#apply(net.minestom.server.command.CommandSender,net.minestom.server.command.builder.exception.ArgumentSyntaxException)">apply</a></span>&#8203;(<a href="../CommandSender.html" title="interface in net.minestom.server.command">CommandSender</a>&nbsp;sender,
-     <a href="exception/ArgumentSyntaxException.html" title="class in net.minestom.server.command.builder.exception">ArgumentSyntaxException</a>&nbsp;exception)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#apply(net.minestom.server.command.CommandSender,net.minestom.server.command.builder.exception.ArgumentSyntaxException)">apply</a></span>&#8203;(@NotNull <a href="../CommandSender.html" title="interface in net.minestom.server.command">CommandSender</a>&nbsp;sender,
+     @NotNull <a href="exception/ArgumentSyntaxException.html" title="class in net.minestom.server.command.builder.exception">ArgumentSyntaxException</a>&nbsp;exception)</code></th>
 <td class="colLast">
 <div class="block">Executed when an error is found.</div>
 </td>
@@ -181,9 +181,9 @@ public interface <span class="typeNameLabel">ArgumentCallback</span></pre>
 <li class="blockList">
 <h4>apply</h4>
 <pre class="methodSignature">void&nbsp;apply&#8203;(@NotNull
-           <a href="../CommandSender.html" title="interface in net.minestom.server.command">CommandSender</a>&nbsp;sender,
+           @NotNull <a href="../CommandSender.html" title="interface in net.minestom.server.command">CommandSender</a>&nbsp;sender,
            @NotNull
-           <a href="exception/ArgumentSyntaxException.html" title="class in net.minestom.server.command.builder.exception">ArgumentSyntaxException</a>&nbsp;exception)</pre>
+           @NotNull <a href="exception/ArgumentSyntaxException.html" title="class in net.minestom.server.command.builder.exception">ArgumentSyntaxException</a>&nbsp;exception)</pre>
 <div class="block">Executed when an error is found.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>

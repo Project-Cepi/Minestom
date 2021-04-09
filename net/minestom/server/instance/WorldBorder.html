@@ -119,7 +119,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </div>
 <div class="contentContainer">
 <ul class="inheritance">
-<li>java.lang.Object</li>
+<li><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
 <li>net.minestom.server.instance.WorldBorder</li>
@@ -131,7 +131,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList">
 <hr>
 <pre>public class <span class="typeNameLabel">WorldBorder</span>
-extends java.lang.Object</pre>
+extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a></pre>
 <div class="block">Represents the world border of an <a href="Instance.html" title="class in net.minestom.server.instance"><code>Instance</code></a>,
  can be retrieved with <a href="Instance.html#getWorldBorder()"><code>Instance.getWorldBorder()</code></a>.</div>
 </li>
@@ -179,7 +179,7 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>protected </code></td>
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(net.minestom.server.instance.Instance)">WorldBorder</a></span>&#8203;(<a href="Instance.html" title="class in net.minestom.server.instance">Instance</a>&nbsp;instance)</code></th>
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(net.minestom.server.instance.Instance)">WorldBorder</a></span>&#8203;(@NotNull <a href="Instance.html" title="class in net.minestom.server.instance">Instance</a>&nbsp;instance)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 </table>
@@ -215,8 +215,8 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code><a href="WorldBorder.CollisionAxis.html" title="enum in net.minestom.server.instance">WorldBorder.CollisionAxis</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getCollisionAxis(net.minestom.server.utils.Position)">getCollisionAxis</a></span>&#8203;(<a href="../utils/Position.html" title="class in net.minestom.server.utils">Position</a>&nbsp;position)</code></th>
+<td class="colFirst"><code>@NotNull <a href="WorldBorder.CollisionAxis.html" title="enum in net.minestom.server.instance">WorldBorder.CollisionAxis</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getCollisionAxis(net.minestom.server.utils.Position)">getCollisionAxis</a></span>&#8203;(@NotNull <a href="../utils/Position.html" title="class in net.minestom.server.utils">Position</a>&nbsp;position)</code></th>
 <td class="colLast">
 <div class="block">Used to check at which axis does the position collides with the world border.</div>
 </td>
@@ -229,7 +229,7 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr id="i4" class="altColor">
-<td class="colFirst"><code><a href="Instance.html" title="class in net.minestom.server.instance">Instance</a></code></td>
+<td class="colFirst"><code>@NotNull <a href="Instance.html" title="class in net.minestom.server.instance">Instance</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getInstance()">getInstance</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Gets the <a href="Instance.html" title="class in net.minestom.server.instance"><code>Instance</code></a> linked to this world border.</div>
@@ -247,21 +247,21 @@ extends java.lang.Object</pre>
 </tr>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#init(net.minestom.server.entity.Player)">init</a></span>&#8203;(<a href="../entity/Player.html" title="class in net.minestom.server.entity">Player</a>&nbsp;player)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#init(net.minestom.server.entity.Player)">init</a></span>&#8203;(@NotNull <a href="../entity/Player.html" title="class in net.minestom.server.entity">Player</a>&nbsp;player)</code></th>
 <td class="colLast">
 <div class="block">Sends the world border init packet to a player.</div>
 </td>
 </tr>
 <tr id="i8" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isInside(net.minestom.server.entity.Entity)">isInside</a></span>&#8203;(<a href="../entity/Entity.html" title="class in net.minestom.server.entity">Entity</a>&nbsp;entity)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isInside(net.minestom.server.entity.Entity)">isInside</a></span>&#8203;(@NotNull <a href="../entity/Entity.html" title="class in net.minestom.server.entity">Entity</a>&nbsp;entity)</code></th>
 <td class="colLast">
 <div class="block">Used to know if an entity is located inside the world border or not.</div>
 </td>
 </tr>
 <tr id="i9" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isInside(net.minestom.server.utils.Position)">isInside</a></span>&#8203;(<a href="../utils/Position.html" title="class in net.minestom.server.utils">Position</a>&nbsp;position)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isInside(net.minestom.server.utils.Position)">isInside</a></span>&#8203;(@NotNull <a href="../utils/Position.html" title="class in net.minestom.server.utils">Position</a>&nbsp;position)</code></th>
 <td class="colLast">
 <div class="block">Used to know if a position is located inside the world border or not.</div>
 </td>
@@ -325,8 +325,8 @@ extends java.lang.Object</pre>
 <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
 <!--   -->
 </a>
-<h3>Methods inherited from class&nbsp;java.lang.Object</h3>
-<code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString, wait, wait, wait</code></li>
+<h3>Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a></h3>
+<code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#clone()" title="class or interface in java.lang" class="externalLink">clone</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#equals(java.lang.Object)" title="class or interface in java.lang" class="externalLink">equals</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#finalize()" title="class or interface in java.lang" class="externalLink">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#getClass()" title="class or interface in java.lang" class="externalLink">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#hashCode()" title="class or interface in java.lang" class="externalLink">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#notify()" title="class or interface in java.lang" class="externalLink">notify</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#notifyAll()" title="class or interface in java.lang" class="externalLink">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#toString()" title="class or interface in java.lang" class="externalLink">toString</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#wait()" title="class or interface in java.lang" class="externalLink">wait</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#wait(long)" title="class or interface in java.lang" class="externalLink">wait</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#wait(long,int)" title="class or interface in java.lang" class="externalLink">wait</a></code></li>
 </ul>
 </li>
 </ul>
@@ -351,7 +351,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>WorldBorder</h4>
 <pre>protected&nbsp;WorldBorder&#8203;(@NotNull
-                      <a href="Instance.html" title="class in net.minestom.server.instance">Instance</a>&nbsp;instance)</pre>
+                      @NotNull <a href="Instance.html" title="class in net.minestom.server.instance">Instance</a>&nbsp;instance)</pre>
 </li>
 </ul>
 </li>
@@ -532,8 +532,8 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getCollisionAxis</h4>
 <pre class="methodSignature">@NotNull
-public&nbsp;<a href="WorldBorder.CollisionAxis.html" title="enum in net.minestom.server.instance">WorldBorder.CollisionAxis</a>&nbsp;getCollisionAxis&#8203;(@NotNull
-                                                  <a href="../utils/Position.html" title="class in net.minestom.server.utils">Position</a>&nbsp;position)</pre>
+public&nbsp;@NotNull <a href="WorldBorder.CollisionAxis.html" title="enum in net.minestom.server.instance">WorldBorder.CollisionAxis</a>&nbsp;getCollisionAxis&#8203;(@NotNull
+                                                           @NotNull <a href="../utils/Position.html" title="class in net.minestom.server.utils">Position</a>&nbsp;position)</pre>
 <div class="block">Used to check at which axis does the position collides with the world border.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -550,7 +550,7 @@ public&nbsp;<a href="WorldBorder.CollisionAxis.html" title="enum in net.minestom
 <li class="blockList">
 <h4>isInside</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;isInside&#8203;(@NotNull
-                        <a href="../utils/Position.html" title="class in net.minestom.server.utils">Position</a>&nbsp;position)</pre>
+                        @NotNull <a href="../utils/Position.html" title="class in net.minestom.server.utils">Position</a>&nbsp;position)</pre>
 <div class="block">Used to know if a position is located inside the world border or not.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -567,7 +567,7 @@ public&nbsp;<a href="WorldBorder.CollisionAxis.html" title="enum in net.minestom
 <li class="blockList">
 <h4>isInside</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;isInside&#8203;(@NotNull
-                        <a href="../entity/Entity.html" title="class in net.minestom.server.entity">Entity</a>&nbsp;entity)</pre>
+                        @NotNull <a href="../entity/Entity.html" title="class in net.minestom.server.entity">Entity</a>&nbsp;entity)</pre>
 <div class="block">Used to know if an entity is located inside the world border or not.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -595,7 +595,7 @@ public&nbsp;<a href="WorldBorder.CollisionAxis.html" title="enum in net.minestom
 <li class="blockList">
 <h4>init</h4>
 <pre class="methodSignature">protected&nbsp;void&nbsp;init&#8203;(@NotNull
-                    <a href="../entity/Player.html" title="class in net.minestom.server.entity">Player</a>&nbsp;player)</pre>
+                    @NotNull <a href="../entity/Player.html" title="class in net.minestom.server.entity">Player</a>&nbsp;player)</pre>
 <div class="block">Sends the world border init packet to a player.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -610,7 +610,7 @@ public&nbsp;<a href="WorldBorder.CollisionAxis.html" title="enum in net.minestom
 <li class="blockList">
 <h4>getInstance</h4>
 <pre class="methodSignature">@NotNull
-public&nbsp;<a href="Instance.html" title="class in net.minestom.server.instance">Instance</a>&nbsp;getInstance()</pre>
+public&nbsp;@NotNull <a href="Instance.html" title="class in net.minestom.server.instance">Instance</a>&nbsp;getInstance()</pre>
 <div class="block">Gets the <a href="Instance.html" title="class in net.minestom.server.instance"><code>Instance</code></a> linked to this world border.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>

@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":9,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":9,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -119,7 +119,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </div>
 <div class="contentContainer">
 <ul class="inheritance">
-<li>java.lang.Object</li>
+<li><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
 <li>net.minestom.server.extensions.ExtensionManager</li>
@@ -131,7 +131,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList">
 <hr>
 <pre>public class <span class="typeNameLabel">ExtensionManager</span>
-extends java.lang.Object</pre>
+extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a></pre>
 </li>
 </ul>
 </div>
@@ -153,17 +153,17 @@ extends java.lang.Object</pre>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colFirst"><code>static <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#DISABLE_EARLY_LOAD_SYSTEM_KEY">DISABLE_EARLY_LOAD_SYSTEM_KEY</a></span></code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colFirst"><code>static <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#INDEV_CLASSES_FOLDER">INDEV_CLASSES_FOLDER</a></span></code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colFirst"><code>static <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#INDEV_RESOURCES_FOLDER">INDEV_RESOURCES_FOLDER</a></span></code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
@@ -212,23 +212,23 @@ extends java.lang.Object</pre>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code><a href="Extension.html" title="class in net.minestom.server.extensions">Extension</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getExtension(java.lang.String)">getExtension</a></span>&#8203;(java.lang.String&nbsp;name)</code></th>
+<td class="colFirst"><code>@Nullable <a href="Extension.html" title="class in net.minestom.server.extensions">Extension</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getExtension(java.lang.String)">getExtension</a></span>&#8203;(@NotNull <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;name)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code>java.io.File</code></td>
+<td class="colFirst"><code>@NotNull <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/io/File.html?is-external=true" title="class or interface in java.io" class="externalLink">File</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getExtensionFolder()">getExtensionFolder</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code>java.util.Map&lt;java.lang.String,&#8203;<a href="../extras/selfmodification/MinestomExtensionClassLoader.html" title="class in net.minestom.server.extras.selfmodification">MinestomExtensionClassLoader</a>&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getExtensionLoaders()">getExtensionLoaders</a></span>()</code></th>
+<td class="colFirst"><code>@NotNull <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Collection.html?is-external=true" title="class or interface in java.util" class="externalLink">Collection</a>&lt;<a href="Extension.html" title="class in net.minestom.server.extensions">Extension</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getExtensions()">getExtensions</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i3" class="rowColor">
-<td class="colFirst"><code>java.util.List&lt;<a href="Extension.html" title="class in net.minestom.server.extensions">Extension</a>&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getExtensions()">getExtensions</a></span>()</code></th>
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#hasExtension(java.lang.String)">hasExtension</a></span>&#8203;(@NotNull <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;name)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i4" class="altColor">
@@ -240,58 +240,52 @@ extends java.lang.Object</pre>
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#loadDynamicExtension(java.io.File)">loadDynamicExtension</a></span>&#8203;(java.io.File&nbsp;jarFile)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#loadDynamicExtension(java.io.File)">loadDynamicExtension</a></span>&#8203;(@NotNull <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/io/File.html?is-external=true" title="class or interface in java.io" class="externalLink">File</a>&nbsp;jarFile)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#loadExtensions()">loadExtensions</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr id="i7" class="rowColor">
-<td class="colFirst"><code><a href="../extras/selfmodification/MinestomExtensionClassLoader.html" title="class in net.minestom.server.extras.selfmodification">MinestomExtensionClassLoader</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#newClassLoader(net.minestom.server.extensions.DiscoveredExtension,java.net.URL%5B%5D)">newClassLoader</a></span>&#8203;(net.minestom.server.extensions.DiscoveredExtension&nbsp;extension,
-              java.net.URL[]&nbsp;urls)</code></th>
 <td class="colLast">
-<div class="block">Creates a new class loader for the given extension.</div>
+<div class="block">Loads all extensions in the extension folder into this server.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
-<td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#reload(java.lang.String)">reload</a></span>&#8203;(java.lang.String&nbsp;extensionName)</code></th>
+<tr id="i7" class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#reload(java.lang.String)">reload</a></span>&#8203;(@NotNull <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;extensionName)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setLoadOnStartup(boolean)">setLoadOnStartup</a></span>&#8203;(boolean&nbsp;loadOnStartup)</code></th>
 <td class="colLast">
 <div class="block">Used to specify if you want extensions to be loaded and initialized during startup.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#shouldLoadOnStartup()">shouldLoadOnStartup</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Gets if the extensions should be loaded during startup.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#shutdown()">shutdown</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Shutdowns all the extensions by unloading them.</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#unloadAllExtensions()">unloadAllExtensions</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Unloads all extensions</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#unloadExtension(java.lang.String)">unloadExtension</a></span>&#8203;(java.lang.String&nbsp;extensionName)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#unloadExtension(java.lang.String)">unloadExtension</a></span>&#8203;(@NotNull <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;extensionName)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 </table>
@@ -299,8 +293,8 @@ extends java.lang.Object</pre>
 <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
 <!--   -->
 </a>
-<h3>Methods inherited from class&nbsp;java.lang.Object</h3>
-<code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString, wait, wait, wait</code></li>
+<h3>Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a></h3>
+<code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#clone()" title="class or interface in java.lang" class="externalLink">clone</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#equals(java.lang.Object)" title="class or interface in java.lang" class="externalLink">equals</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#finalize()" title="class or interface in java.lang" class="externalLink">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#getClass()" title="class or interface in java.lang" class="externalLink">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#hashCode()" title="class or interface in java.lang" class="externalLink">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#notify()" title="class or interface in java.lang" class="externalLink">notify</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#notifyAll()" title="class or interface in java.lang" class="externalLink">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#toString()" title="class or interface in java.lang" class="externalLink">toString</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#wait()" title="class or interface in java.lang" class="externalLink">wait</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#wait(long)" title="class or interface in java.lang" class="externalLink">wait</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#wait(long,int)" title="class or interface in java.lang" class="externalLink">wait</a></code></li>
 </ul>
 </li>
 </ul>
@@ -324,7 +318,7 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>DISABLE_EARLY_LOAD_SYSTEM_KEY</h4>
-<pre>public static final&nbsp;java.lang.String DISABLE_EARLY_LOAD_SYSTEM_KEY</pre>
+<pre>public static final&nbsp;<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a> DISABLE_EARLY_LOAD_SYSTEM_KEY</pre>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="../../../../constant-values.html#net.minestom.server.extensions.ExtensionManager.DISABLE_EARLY_LOAD_SYSTEM_KEY">Constant Field Values</a></dd>
@@ -346,7 +340,7 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>INDEV_CLASSES_FOLDER</h4>
-<pre>public static final&nbsp;java.lang.String INDEV_CLASSES_FOLDER</pre>
+<pre>public static final&nbsp;<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a> INDEV_CLASSES_FOLDER</pre>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="../../../../constant-values.html#net.minestom.server.extensions.ExtensionManager.INDEV_CLASSES_FOLDER">Constant Field Values</a></dd>
@@ -359,7 +353,7 @@ extends java.lang.Object</pre>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>INDEV_RESOURCES_FOLDER</h4>
-<pre>public static final&nbsp;java.lang.String INDEV_RESOURCES_FOLDER</pre>
+<pre>public static final&nbsp;<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a> INDEV_RESOURCES_FOLDER</pre>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="../../../../constant-values.html#net.minestom.server.extensions.ExtensionManager.INDEV_RESOURCES_FOLDER">Constant Field Values</a></dd>
@@ -434,25 +428,46 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>loadExtensions</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;loadExtensions()</pre>
-</li>
-</ul>
-<a id="newClassLoader(net.minestom.server.extensions.DiscoveredExtension,java.net.URL[])">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>newClassLoader</h4>
-<pre class="methodSignature">@NotNull
-public&nbsp;<a href="../extras/selfmodification/MinestomExtensionClassLoader.html" title="class in net.minestom.server.extras.selfmodification">MinestomExtensionClassLoader</a>&nbsp;newClassLoader&#8203;(@NotNull
-                                                   net.minestom.server.extensions.DiscoveredExtension&nbsp;extension,
-                                                   @NotNull
-                                                   java.net.URL[]&nbsp;urls)</pre>
-<div class="block">Creates a new class loader for the given extension.
- Will add the new loader as a child of all its dependencies' loaders.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>urls</code> - <code>URL</code> (usually a JAR) that should be loaded.</dd>
-</dl>
+<div class="block">Loads all extensions in the extension folder into this server.
+ <br><br>
+ <p>
+ Pipeline:
+ <br>
+ Finds all .jar files in the extensions folder.
+ <br>
+ Per each jar:
+ <br>
+ Turns its extension.json into a DiscoveredExtension object.
+ <br>
+ Verifies that all properties of extension.json are correctly set.
+ <br><br>
+ <p>
+ It then sorts all those jars by their load order (making sure that an extension's dependencies load before it)
+ <br>
+ Note: Cyclic dependencies will stop both extensions from being loaded.
+ <br><br>
+ <p>
+ Afterwards, it loads all external dependencies and adds them to the extension's files
+ <br><br>
+ <p>
+ Then removes any invalid extensions (Invalid being its Load Status isn't SUCCESS)
+ <br><br>
+ <p>
+ After that, it set its classloaders so each extension is self-contained,
+ <br><br>
+ <p>
+ Removes invalid extensions again,
+ <br><br>
+ <p>
+ and loads all of those extensions into Minestom
+ <br>
+ (Extension fields are set via reflection after each extension is verified, then loaded.)
+ <br><br>
+ <p>
+ If the extension successfully loads, add it to the global extension Map (Name to Extension)
+ <br><br>
+ <p>
+ And finally make a scheduler to clean observers per extension.</div>
 </li>
 </ul>
 <a id="getExtensionFolder()">
@@ -462,7 +477,7 @@ public&nbsp;<a href="../extras/selfmodification/MinestomExtensionClassLoader.htm
 <li class="blockList">
 <h4>getExtensionFolder</h4>
 <pre class="methodSignature">@NotNull
-public&nbsp;java.io.File&nbsp;getExtensionFolder()</pre>
+public&nbsp;@NotNull <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/io/File.html?is-external=true" title="class or interface in java.io" class="externalLink">File</a>&nbsp;getExtensionFolder()</pre>
 </li>
 </ul>
 <a id="getExtensions()">
@@ -472,7 +487,7 @@ public&nbsp;java.io.File&nbsp;getExtensionFolder()</pre>
 <li class="blockList">
 <h4>getExtensions</h4>
 <pre class="methodSignature">@NotNull
-public&nbsp;java.util.List&lt;<a href="Extension.html" title="class in net.minestom.server.extensions">Extension</a>&gt;&nbsp;getExtensions()</pre>
+public&nbsp;@NotNull <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Collection.html?is-external=true" title="class or interface in java.util" class="externalLink">Collection</a>&lt;<a href="Extension.html" title="class in net.minestom.server.extensions">Extension</a>&gt;&nbsp;getExtensions()</pre>
 </li>
 </ul>
 <a id="getExtension(java.lang.String)">
@@ -482,18 +497,18 @@ public&nbsp;java.util.List&lt;<a href="Extension.html" title="class in net.mines
 <li class="blockList">
 <h4>getExtension</h4>
 <pre class="methodSignature">@Nullable
-public&nbsp;<a href="Extension.html" title="class in net.minestom.server.extensions">Extension</a>&nbsp;getExtension&#8203;(@NotNull
-                              java.lang.String&nbsp;name)</pre>
+public&nbsp;@Nullable <a href="Extension.html" title="class in net.minestom.server.extensions">Extension</a>&nbsp;getExtension&#8203;(@NotNull
+                                        @NotNull <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;name)</pre>
 </li>
 </ul>
-<a id="getExtensionLoaders()">
+<a id="hasExtension(java.lang.String)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getExtensionLoaders</h4>
-<pre class="methodSignature">@NotNull
-public&nbsp;java.util.Map&lt;java.lang.String,&#8203;<a href="../extras/selfmodification/MinestomExtensionClassLoader.html" title="class in net.minestom.server.extras.selfmodification">MinestomExtensionClassLoader</a>&gt;&nbsp;getExtensionLoaders()</pre>
+<h4>hasExtension</h4>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;hasExtension&#8203;(@NotNull
+                            @NotNull <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;name)</pre>
 </li>
 </ul>
 <a id="reload(java.lang.String)">
@@ -502,7 +517,8 @@ public&nbsp;java.util.Map&lt;java.lang.String,&#8203;<a href="../extras/selfmodi
 <ul class="blockList">
 <li class="blockList">
 <h4>reload</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;reload&#8203;(java.lang.String&nbsp;extensionName)</pre>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;reload&#8203;(@NotNull
+                      @NotNull <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;extensionName)</pre>
 </li>
 </ul>
 <a id="loadDynamicExtension(java.io.File)">
@@ -511,11 +527,12 @@ public&nbsp;java.util.Map&lt;java.lang.String,&#8203;<a href="../extras/selfmodi
 <ul class="blockList">
 <li class="blockList">
 <h4>loadDynamicExtension</h4>
-<pre class="methodSignature">public&nbsp;boolean&nbsp;loadDynamicExtension&#8203;(java.io.File&nbsp;jarFile)
-                             throws java.io.FileNotFoundException</pre>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;loadDynamicExtension&#8203;(@NotNull
+                                    @NotNull <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/io/File.html?is-external=true" title="class or interface in java.io" class="externalLink">File</a>&nbsp;jarFile)
+                             throws <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/io/FileNotFoundException.html?is-external=true" title="class or interface in java.io" class="externalLink">FileNotFoundException</a></pre>
 <dl>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.io.FileNotFoundException</code></dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/io/FileNotFoundException.html?is-external=true" title="class or interface in java.io" class="externalLink">FileNotFoundException</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -525,7 +542,8 @@ public&nbsp;java.util.Map&lt;java.lang.String,&#8203;<a href="../extras/selfmodi
 <ul class="blockList">
 <li class="blockList">
 <h4>unloadExtension</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;unloadExtension&#8203;(java.lang.String&nbsp;extensionName)</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;unloadExtension&#8203;(@NotNull
+                            @NotNull <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;extensionName)</pre>
 </li>
 </ul>
 <a id="shutdown()">

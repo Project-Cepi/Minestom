@@ -65,6 +65,8 @@
 <li><a href="net/minestom/server/event/player/AdvancementTabEvent.html" title="class in net.minestom.server.event.player">AdvancementTabEvent</a></li>
 <li><a href="net/minestom/server/listener/AdvancementTabListener.html" title="class in net.minestom.server.listener">AdvancementTabListener</a></li>
 <li><a href="net/minestom/server/utils/advancement/AdvancementUtils.html" title="class in net.minestom.server.utils.advancement">AdvancementUtils</a></li>
+<li><a href="net/minestom/server/adventure/AdventurePacketConvertor.html" title="class in net.minestom.server.adventure">AdventurePacketConvertor</a></li>
+<li><a href="net/minestom/server/adventure/AdventureSerializer.html" title="class in net.minestom.server.adventure">AdventureSerializer</a></li>
 <li><a href="net/minestom/server/entity/type/Ageable.html" title="interface in net.minestom.server.entity.type"><span class="interfaceName">Ageable</span></a></li>
 <li><a href="net/minestom/server/entity/type/AgeableCreature.html" title="class in net.minestom.server.entity.type">AgeableCreature</a></li>
 <li><a href="net/minestom/server/entity/metadata/AgeableMobMeta.html" title="class in net.minestom.server.entity.metadata">AgeableMobMeta</a></li>
@@ -106,9 +108,13 @@
 <li><a href="net/minestom/server/command/builder/arguments/ArgumentLiteral.html" title="class in net.minestom.server.command.builder.arguments">ArgumentLiteral</a></li>
 <li><a href="net/minestom/server/command/builder/arguments/number/ArgumentLong.html" title="class in net.minestom.server.command.builder.arguments.number">ArgumentLong</a></li>
 <li><a href="net/minestom/server/command/builder/arguments/ArgumentLoop.html" title="class in net.minestom.server.command.builder.arguments">ArgumentLoop</a></li>
+<li><a href="net/minestom/server/command/builder/arguments/ArgumentMap.html" title="class in net.minestom.server.command.builder.arguments">ArgumentMap</a></li>
+<li><a href="net/minestom/server/command/builder/arguments/ArgumentMap.Mapper.html" title="interface in net.minestom.server.command.builder.arguments"><span class="interfaceName">ArgumentMap.Mapper</span></a></li>
 <li><a href="net/minestom/server/command/builder/arguments/minecraft/ArgumentNbtCompoundTag.html" title="class in net.minestom.server.command.builder.arguments.minecraft">ArgumentNbtCompoundTag</a></li>
 <li><a href="net/minestom/server/command/builder/arguments/minecraft/ArgumentNbtTag.html" title="class in net.minestom.server.command.builder.arguments.minecraft">ArgumentNbtTag</a></li>
 <li><a href="net/minestom/server/command/builder/arguments/number/ArgumentNumber.html" title="class in net.minestom.server.command.builder.arguments.number">ArgumentNumber</a></li>
+<li><a href="net/minestom/server/command/builder/parser/ArgumentParser.html" title="class in net.minestom.server.command.builder.parser">ArgumentParser</a></li>
+<li><a href="net/minestom/server/command/builder/parser/ArgumentParser.ArgumentResult.html" title="class in net.minestom.server.command.builder.parser">ArgumentParser.ArgumentResult</a></li>
 <li><a href="net/minestom/server/command/builder/arguments/minecraft/registry/ArgumentParticle.html" title="class in net.minestom.server.command.builder.arguments.minecraft.registry">ArgumentParticle</a></li>
 <li><a href="net/minestom/server/command/builder/arguments/minecraft/registry/ArgumentPotionEffect.html" title="class in net.minestom.server.command.builder.arguments.minecraft.registry">ArgumentPotionEffect</a></li>
 <li><a href="net/minestom/server/command/builder/parser/ArgumentQueryResult.html" title="class in net.minestom.server.command.builder.parser">ArgumentQueryResult</a></li>
@@ -118,12 +124,14 @@
 <li><a href="net/minestom/server/command/builder/arguments/relative/ArgumentRelativeBlockPosition.html" title="class in net.minestom.server.command.builder.arguments.relative">ArgumentRelativeBlockPosition</a></li>
 <li><a href="net/minestom/server/command/builder/arguments/relative/ArgumentRelativeVec2.html" title="class in net.minestom.server.command.builder.arguments.relative">ArgumentRelativeVec2</a></li>
 <li><a href="net/minestom/server/command/builder/arguments/relative/ArgumentRelativeVec3.html" title="class in net.minestom.server.command.builder.arguments.relative">ArgumentRelativeVec3</a></li>
+<li><a href="net/minestom/server/command/builder/arguments/minecraft/ArgumentResourceLocation.html" title="class in net.minestom.server.command.builder.arguments.minecraft">ArgumentResourceLocation</a></li>
 <li><a href="net/minestom/server/command/builder/Arguments.html" title="class in net.minestom.server.command.builder">Arguments</a></li>
 <li><a href="net/minestom/server/command/builder/arguments/ArgumentString.html" title="class in net.minestom.server.command.builder.arguments">ArgumentString</a></li>
 <li><a href="net/minestom/server/command/builder/arguments/ArgumentStringArray.html" title="class in net.minestom.server.command.builder.arguments">ArgumentStringArray</a></li>
 <li><a href="net/minestom/server/command/builder/exception/ArgumentSyntaxException.html" title="class in net.minestom.server.command.builder.exception">ArgumentSyntaxException</a></li>
 <li><a href="net/minestom/server/command/builder/arguments/minecraft/ArgumentTime.html" title="class in net.minestom.server.command.builder.arguments.minecraft">ArgumentTime</a></li>
 <li><a href="net/minestom/server/command/builder/arguments/ArgumentType.html" title="class in net.minestom.server.command.builder.arguments">ArgumentType</a></li>
+<li><a href="net/minestom/server/command/builder/arguments/minecraft/ArgumentUUID.html" title="class in net.minestom.server.command.builder.arguments.minecraft">ArgumentUUID</a></li>
 <li><a href="net/minestom/server/command/builder/arguments/ArgumentWord.html" title="class in net.minestom.server.command.builder.arguments">ArgumentWord</a></li>
 <li><a href="net/minestom/server/event/item/ArmorEquipEvent.html" title="class in net.minestom.server.event.item">ArmorEquipEvent</a></li>
 <li><a href="net/minestom/server/event/item/ArmorEquipEvent.ArmorSlot.html" title="enum in net.minestom.server.event.item">ArmorEquipEvent.ArmorSlot</a></li>
@@ -141,6 +149,9 @@
 <li><a href="net/minestom/server/attribute/AttributeOperation.html" title="enum in net.minestom.server.attribute">AttributeOperation</a></li>
 <li><a href="net/minestom/server/attribute/Attributes.html" title="class in net.minestom.server.attribute">Attributes</a></li>
 <li><a href="net/minestom/server/item/attribute/AttributeSlot.html" title="enum in net.minestom.server.item.attribute">AttributeSlot</a></li>
+<li><a href="net/minestom/server/adventure/audience/AudienceProvider.html" title="interface in net.minestom.server.adventure.audience"><span class="interfaceName">AudienceProvider</span></a></li>
+<li><a href="net/minestom/server/adventure/audience/AudienceRegistry.html" title="class in net.minestom.server.adventure.audience">AudienceRegistry</a></li>
+<li><a href="net/minestom/server/adventure/audience/Audiences.html" title="class in net.minestom.server.adventure.audience">Audiences</a></li>
 <li><a href="net/minestom/server/instance/block/rule/vanilla/AxisPlacementRule.html" title="class in net.minestom.server.instance.block.rule.vanilla">AxisPlacementRule</a></li>
 <li><a href="net/minestom/server/instance/block/states/Bamboo.html" title="class in net.minestom.server.instance.block.states">Bamboo</a></li>
 <li><a href="net/minestom/server/bossbar/BarColor.html" title="enum in net.minestom.server.bossbar">BarColor</a></li>
@@ -234,6 +245,7 @@
 <li><a href="net/minestom/server/data/type/BooleanData.html" title="class in net.minestom.server.data.type">BooleanData</a></li>
 <li><a href="net/minestom/server/Bootstrap.html" title="class in net.minestom.server">Bootstrap</a></li>
 <li><a href="net/minestom/server/bossbar/BossBar.html" title="class in net.minestom.server.bossbar">BossBar</a></li>
+<li><a href="net/minestom/server/adventure/bossbar/BossBarManager.html" title="class in net.minestom.server.adventure.bossbar">BossBarManager</a></li>
 <li><a href="net/minestom/server/network/packet/server/play/BossBarPacket.html" title="class in net.minestom.server.network.packet.server.play">BossBarPacket</a></li>
 <li><a href="net/minestom/server/network/packet/server/play/BossBarPacket.Action.html" title="enum in net.minestom.server.network.packet.server.play">BossBarPacket.Action</a></li>
 <li><a href="net/minestom/server/collision/BoundingBox.html" title="class in net.minestom.server.collision">BoundingBox</a></li>
@@ -312,7 +324,7 @@
 <li><a href="net/minestom/server/network/packet/client/play/ClientChatMessagePacket.html" title="class in net.minestom.server.network.packet.client.play">ClientChatMessagePacket</a></li>
 <li><a href="net/minestom/server/network/packet/client/play/ClientClickWindowButtonPacket.html" title="class in net.minestom.server.network.packet.client.play">ClientClickWindowButtonPacket</a></li>
 <li><a href="net/minestom/server/network/packet/client/play/ClientClickWindowPacket.html" title="class in net.minestom.server.network.packet.client.play">ClientClickWindowPacket</a></li>
-<li><a href="net/minestom/server/network/packet/client/play/ClientCloseWindow.html" title="class in net.minestom.server.network.packet.client.play">ClientCloseWindow</a></li>
+<li><a href="net/minestom/server/network/packet/client/play/ClientCloseWindowPacket.html" title="class in net.minestom.server.network.packet.client.play">ClientCloseWindowPacket</a></li>
 <li><a href="net/minestom/server/network/packet/client/play/ClientCraftRecipeRequest.html" title="class in net.minestom.server.network.packet.client.play">ClientCraftRecipeRequest</a></li>
 <li><a href="net/minestom/server/network/packet/client/play/ClientCreativeInventoryActionPacket.html" title="class in net.minestom.server.network.packet.client.play">ClientCreativeInventoryActionPacket</a></li>
 <li><a href="net/minestom/server/network/packet/client/play/ClientEditBookPacket.html" title="class in net.minestom.server.network.packet.client.play">ClientEditBookPacket</a></li>
@@ -344,10 +356,12 @@
 <li><a href="net/minestom/server/network/packet/client/ClientPreplayPacket.html" title="interface in net.minestom.server.network.packet.client"><span class="interfaceName">ClientPreplayPacket</span></a></li>
 <li><a href="net/minestom/server/network/packet/client/play/ClientQueryBlockNbtPacket.html" title="class in net.minestom.server.network.packet.client.play">ClientQueryBlockNbtPacket</a></li>
 <li><a href="net/minestom/server/network/packet/client/play/ClientQueryEntityNbtPacket.html" title="class in net.minestom.server.network.packet.client.play">ClientQueryEntityNbtPacket</a></li>
-<li><a href="net/minestom/server/network/packet/client/play/ClientRecipeBookData.html" title="class in net.minestom.server.network.packet.client.play">ClientRecipeBookData</a></li>
 <li><a href="net/minestom/server/network/packet/client/play/ClientResourcePackStatusPacket.html" title="class in net.minestom.server.network.packet.client.play">ClientResourcePackStatusPacket</a></li>
 <li><a href="net/minestom/server/network/packet/client/play/ClientSelectTradePacket.html" title="class in net.minestom.server.network.packet.client.play">ClientSelectTradePacket</a></li>
 <li><a href="net/minestom/server/network/packet/client/play/ClientSetBeaconEffectPacket.html" title="class in net.minestom.server.network.packet.client.play">ClientSetBeaconEffectPacket</a></li>
+<li><a href="net/minestom/server/network/packet/client/play/ClientSetDisplayedRecipePacket.html" title="class in net.minestom.server.network.packet.client.play">ClientSetDisplayedRecipePacket</a></li>
+<li><a href="net/minestom/server/network/packet/client/play/ClientSetRecipeBookStatePacket.html" title="class in net.minestom.server.network.packet.client.play">ClientSetRecipeBookStatePacket</a></li>
+<li><a href="net/minestom/server/network/packet/client/play/ClientSetRecipeBookStatePacket.BookType.html" title="enum in net.minestom.server.network.packet.client.play">ClientSetRecipeBookStatePacket.BookType</a></li>
 <li><a href="net/minestom/server/network/packet/client/play/ClientSettingsPacket.html" title="class in net.minestom.server.network.packet.client.play">ClientSettingsPacket</a></li>
 <li><a href="net/minestom/server/network/packet/client/play/ClientSpectatePacket.html" title="class in net.minestom.server.network.packet.client.play">ClientSpectatePacket</a></li>
 <li><a href="net/minestom/server/network/packet/client/play/ClientStatusPacket.html" title="class in net.minestom.server.network.packet.client.play">ClientStatusPacket</a></li>
@@ -375,6 +389,7 @@
 <li><a href="net/minestom/server/entity/metadata/water/fish/CodMeta.html" title="class in net.minestom.server.entity.metadata.water.fish">CodMeta</a></li>
 <li><a href="net/minestom/server/network/packet/server/play/CollectItemPacket.html" title="class in net.minestom.server.network.packet.server.play">CollectItemPacket</a></li>
 <li><a href="net/minestom/server/collision/CollisionUtils.html" title="class in net.minestom.server.collision">CollisionUtils</a></li>
+<li><a href="net/minestom/server/color/Color.html" title="class in net.minestom.server.color">Color</a></li>
 <li><a href="net/minestom/server/chat/ColoredText.html" title="class in net.minestom.server.chat">ColoredText</a></li>
 <li><a href="net/minestom/server/network/packet/server/play/CombatEventPacket.html" title="class in net.minestom.server.network.packet.server.play">CombatEventPacket</a></li>
 <li><a href="net/minestom/server/network/packet/server/play/CombatEventPacket.EventType.html" title="enum in net.minestom.server.network.packet.server.play">CombatEventPacket.EventType</a></li>
@@ -390,7 +405,6 @@
 <li><a href="net/minestom/server/command/builder/CommandExecutor.html" title="interface in net.minestom.server.command.builder"><span class="interfaceName">CommandExecutor</span></a></li>
 <li><a href="net/minestom/server/command/CommandManager.html" title="class in net.minestom.server.command">CommandManager</a></li>
 <li><a href="net/minestom/server/command/builder/parser/CommandParser.html" title="class in net.minestom.server.command.builder.parser">CommandParser</a></li>
-<li><a href="net/minestom/server/command/builder/parser/CommandParser.ArgumentResult.html" title="class in net.minestom.server.command.builder.parser">CommandParser.ArgumentResult</a></li>
 <li><a href="net/minestom/server/command/CommandProcessor.html" title="interface in net.minestom.server.command"><span class="interfaceName">CommandProcessor</span></a></li>
 <li><a href="net/minestom/server/command/builder/parser/CommandQueryResult.html" title="class in net.minestom.server.command.builder.parser">CommandQueryResult</a></li>
 <li><a href="net/minestom/server/command/builder/CommandResult.html" title="class in net.minestom.server.command.builder">CommandResult</a></li>
@@ -400,16 +414,19 @@
 <li><a href="net/minestom/server/command/builder/CommandSyntax.html" title="class in net.minestom.server.command.builder">CommandSyntax</a></li>
 <li><a href="net/minestom/server/instance/block/states/Comparator.html" title="class in net.minestom.server.instance.block.states">Comparator</a></li>
 <li><a href="net/minestom/server/item/metadata/CompassMeta.html" title="class in net.minestom.server.item.metadata">CompassMeta</a></li>
+<li><a href="net/minestom/server/adventure/ComponentHolder.html" title="interface in net.minestom.server.adventure"><span class="interfaceName">ComponentHolder</span></a></li>
+<li><a href="net/minestom/server/network/packet/server/ComponentHoldingServerPacket.html" title="interface in net.minestom.server.network.packet.server"><span class="interfaceName">ComponentHoldingServerPacket</span></a></li>
 <li><a href="net/minestom/server/instance/block/states/Composter.html" title="class in net.minestom.server.instance.block.states">Composter</a></li>
 <li><a href="net/minestom/server/gamedata/Condition.html" title="interface in net.minestom.server.gamedata"><span class="interfaceName">Condition</span></a></li>
 <li><a href="net/minestom/server/gamedata/loottables/ConditionContainer.html" title="class in net.minestom.server.gamedata.loottables">ConditionContainer</a></li>
 <li><a href="net/minestom/server/gamedata/loottables/ConditionedFunctionWrapper.html" title="class in net.minestom.server.gamedata.loottables">ConditionedFunctionWrapper</a></li>
+<li><a href="net/minestom/server/command/builder/condition/Conditions.html" title="class in net.minestom.server.command.builder.condition">Conditions</a></li>
 <li><a href="net/minestom/server/instance/block/states/Conduit.html" title="class in net.minestom.server.instance.block.states">Conduit</a></li>
 <li><a href="net/minestom/server/network/ConnectionManager.html" title="class in net.minestom.server.network">ConnectionManager</a></li>
 <li><a href="net/minestom/server/network/ConnectionState.html" title="enum in net.minestom.server.network">ConnectionState</a></li>
 <li><a href="net/minestom/server/command/ConsoleSender.html" title="class in net.minestom.server.command">ConsoleSender</a></li>
 <li><a href="net/minestom/server/entity/type/Constructable.html" title="interface in net.minestom.server.entity.type"><span class="interfaceName">Constructable</span></a></li>
-<li><a href="net/minestom/server/utils/time/CooldownUtils.html" title="class in net.minestom.server.utils.time">CooldownUtils</a></li>
+<li><a href="net/minestom/server/utils/time/Cooldown.html" title="class in net.minestom.server.utils.time">Cooldown</a></li>
 <li><a href="net/minestom/server/entity/metadata/animal/CowMeta.html" title="class in net.minestom.server.entity.metadata.animal">CowMeta</a></li>
 <li><a href="net/minestom/server/network/packet/server/play/CraftRecipeResponse.html" title="class in net.minestom.server.network.packet.server.play">CraftRecipeResponse</a></li>
 <li><a href="net/minestom/server/listener/CreativeInventoryActionListener.html" title="class in net.minestom.server.listener">CreativeInventoryActionListener</a></li>
@@ -508,6 +525,9 @@
 <li><a href="net/minestom/server/map/framebuffers/DirectFramebuffer.html" title="class in net.minestom.server.map.framebuffers">DirectFramebuffer</a></li>
 <li><a href="net/minestom/server/utils/Direction.html" title="enum in net.minestom.server.utils">Direction</a></li>
 <li><a href="net/minestom/server/network/packet/server/play/DisconnectPacket.html" title="class in net.minestom.server.network.packet.server.play">DisconnectPacket</a></li>
+<li><a href="net/minestom/server/extensions/DiscoveredExtension.html" title="class in net.minestom.server.extensions">DiscoveredExtension</a></li>
+<li><a href="net/minestom/server/extensions/DiscoveredExtension.ExternalDependencies.html" title="class in net.minestom.server.extensions">DiscoveredExtension.ExternalDependencies</a></li>
+<li><a href="net/minestom/server/extensions/DiscoveredExtension.ExternalDependencies.Repository.html" title="class in net.minestom.server.extensions">DiscoveredExtension.ExternalDependencies.Repository</a></li>
 <li><a href="net/minestom/server/instance/block/states/Dispenser.html" title="class in net.minestom.server.instance.block.states">Dispenser</a></li>
 <li><a href="net/minestom/server/network/packet/server/play/DisplayScoreboardPacket.html" title="class in net.minestom.server.network.packet.server.play">DisplayScoreboardPacket</a></li>
 <li><a href="net/minestom/server/entity/metadata/water/DolphinMeta.html" title="class in net.minestom.server.entity.metadata.water">DolphinMeta</a></li>
@@ -521,6 +541,7 @@
 <li><a href="net/minestom/server/instance/block/states/DragonWallHead.html" title="class in net.minestom.server.instance.block.states">DragonWallHead</a></li>
 <li><a href="net/minestom/server/instance/block/states/Dropper.html" title="class in net.minestom.server.instance.block.states">Dropper</a></li>
 <li><a href="net/minestom/server/entity/metadata/monster/zombie/DrownedMeta.html" title="class in net.minestom.server.entity.metadata.monster.zombie">DrownedMeta</a></li>
+<li><a href="net/minestom/server/color/DyeColor.html" title="enum in net.minestom.server.color">DyeColor</a></li>
 <li><a href="net/minestom/server/instance/DynamicChunk.html" title="class in net.minestom.server.instance">DynamicChunk</a></li>
 <li><a href="net/minestom/server/gamedata/loottables/entries/DynamicEntry.html" title="class in net.minestom.server.gamedata.loottables.entries">DynamicEntry</a></li>
 <li><a href="net/minestom/server/gamedata/loottables/entries/DynamicEntry.Type.html" title="enum in net.minestom.server.gamedata.loottables.entries">DynamicEntry.Type</a></li>
@@ -650,7 +671,6 @@
 <li><a href="net/minestom/server/network/packet/server/play/ExplosionPacket.html" title="class in net.minestom.server.network.packet.server.play">ExplosionPacket</a></li>
 <li><a href="net/minestom/server/instance/ExplosionSupplier.html" title="interface in net.minestom.server.instance"><span class="interfaceName">ExplosionSupplier</span></a></li>
 <li><a href="net/minestom/server/extensions/Extension.html" title="class in net.minestom.server.extensions">Extension</a></li>
-<li><a href="net/minestom/server/extensions/Extension.ExtensionDescription.html" title="class in net.minestom.server.extensions">Extension.ExtensionDescription</a></li>
 <li><a href="net/minestom/server/extensions/ExtensionDependencyResolver.html" title="class in net.minestom.server.extensions">ExtensionDependencyResolver</a></li>
 <li><a href="net/minestom/server/extensions/ExtensionManager.html" title="class in net.minestom.server.extensions">ExtensionManager</a></li>
 <li><a href="net/minestom/server/entity/metadata/item/EyeOfEnderMeta.html" title="class in net.minestom.server.entity.metadata.item">EyeOfEnderMeta</a></li>
@@ -850,6 +870,7 @@
 <li><a href="net/minestom/server/entity/metadata/animal/LlamaMeta.html" title="class in net.minestom.server.entity.metadata.animal">LlamaMeta</a></li>
 <li><a href="net/minestom/server/entity/metadata/animal/LlamaMeta.Variant.html" title="enum in net.minestom.server.entity.metadata.animal">LlamaMeta.Variant</a></li>
 <li><a href="net/minestom/server/entity/metadata/other/LlamaSpitMeta.html" title="class in net.minestom.server.entity.metadata.other">LlamaSpitMeta</a></li>
+<li><a href="net/minestom/server/adventure/Localizable.html" title="interface in net.minestom.server.adventure"><span class="interfaceName">Localizable</span></a></li>
 <li><a href="net/minestom/server/network/packet/server/login/LoginDisconnectPacket.html" title="class in net.minestom.server.network.packet.server.login">LoginDisconnectPacket</a></li>
 <li><a href="net/minestom/server/network/packet/server/login/LoginPluginRequestPacket.html" title="class in net.minestom.server.network.packet.server.login">LoginPluginRequestPacket</a></li>
 <li><a href="net/minestom/server/network/packet/client/login/LoginPluginResponsePacket.html" title="class in net.minestom.server.network.packet.client.login">LoginPluginResponsePacket</a></li>
@@ -980,6 +1001,7 @@
 <li><a href="net/minestom/server/network/netty/codec/PacketDecoder.html" title="class in net.minestom.server.network.netty.codec">PacketDecoder</a></li>
 <li><a href="net/minestom/server/network/netty/codec/PacketEncoder.html" title="class in net.minestom.server.network.netty.codec">PacketEncoder</a></li>
 <li><a href="net/minestom/server/network/netty/codec/PacketFramer.html" title="class in net.minestom.server.network.netty.codec">PacketFramer</a></li>
+<li><a href="net/minestom/server/adventure/audience/PacketGroupingAudience.html" title="interface in net.minestom.server.adventure.audience"><span class="interfaceName">PacketGroupingAudience</span></a></li>
 <li><a href="net/minestom/server/listener/manager/PacketListenerConsumer.html" title="interface in net.minestom.server.listener.manager"><span class="interfaceName">PacketListenerConsumer</span></a></li>
 <li><a href="net/minestom/server/listener/manager/PacketListenerManager.html" title="class in net.minestom.server.listener.manager">PacketListenerManager</a></li>
 <li><a href="net/minestom/server/network/PacketProcessor.html" title="class in net.minestom.server.network">PacketProcessor</a></li>
@@ -997,7 +1019,6 @@
 <li><a href="net/minestom/server/network/packet/server/play/ParticlePacket.html" title="class in net.minestom.server.network.packet.server.play">ParticlePacket</a></li>
 <li><a href="net/minestom/server/entity/metadata/PathfinderMobMeta.html" title="class in net.minestom.server.entity.metadata">PathfinderMobMeta</a></li>
 <li><a href="net/minestom/server/instance/block/states/Peony.html" title="class in net.minestom.server.instance.block.states">Peony</a></li>
-<li><a href="net/minestom/server/thread/PerGroupChunkProvider.html" title="class in net.minestom.server.thread">PerGroupChunkProvider</a></li>
 <li><a href="net/minestom/server/thread/PerInstanceThreadProvider.html" title="class in net.minestom.server.thread">PerInstanceThreadProvider</a></li>
 <li><a href="net/minestom/server/permission/Permission.html" title="class in net.minestom.server.permission">Permission</a></li>
 <li><a href="net/minestom/server/permission/PermissionHandler.html" title="interface in net.minestom.server.permission"><span class="interfaceName">PermissionHandler</span></a></li>
@@ -1274,9 +1295,9 @@
 <li><a href="net/minestom/server/instance/block/states/SoulCampfire.html" title="class in net.minestom.server.instance.block.states">SoulCampfire</a></li>
 <li><a href="net/minestom/server/instance/block/states/SoulLantern.html" title="class in net.minestom.server.instance.block.states">SoulLantern</a></li>
 <li><a href="net/minestom/server/instance/block/states/SoulWallTorch.html" title="class in net.minestom.server.instance.block.states">SoulWallTorch</a></li>
-<li><a href="net/minestom/server/sound/Sound.html" title="enum in net.minestom.server.sound">Sound</a></li>
 <li><a href="net/minestom/server/sound/SoundCategory.html" title="enum in net.minestom.server.sound">SoundCategory</a></li>
 <li><a href="net/minestom/server/network/packet/server/play/SoundEffectPacket.html" title="class in net.minestom.server.network.packet.server.play">SoundEffectPacket</a></li>
+<li><a href="net/minestom/server/sound/SoundEvent.html" title="enum in net.minestom.server.sound">SoundEvent</a></li>
 <li><a href="net/minestom/server/item/metadata/SpawnEggMeta.html" title="class in net.minestom.server.item.metadata">SpawnEggMeta</a></li>
 <li><a href="net/minestom/server/network/packet/server/play/SpawnEntityPacket.html" title="class in net.minestom.server.network.packet.server.play">SpawnEntityPacket</a></li>
 <li><a href="net/minestom/server/entity/metadata/minecart/SpawnerMinecartMeta.html" title="class in net.minestom.server.entity.metadata.minecart">SpawnerMinecartMeta</a></li>
@@ -1306,6 +1327,7 @@
 <li><a href="net/minestom/server/instance/block/states/SpruceWood.html" title="class in net.minestom.server.instance.block.states">SpruceWood</a></li>
 <li><a href="net/minestom/server/entity/metadata/water/SquidMeta.html" title="class in net.minestom.server.entity.metadata.water">SquidMeta</a></li>
 <li><a href="net/minestom/server/item/StackingRule.html" title="class in net.minestom.server.item">StackingRule</a></li>
+<li><a href="net/minestom/server/instance/block/rule/vanilla/StairsPlacementRule.html" title="class in net.minestom.server.instance.block.rule.vanilla">StairsPlacementRule</a></li>
 <li><a href="net/minestom/server/stat/StatisticCategory.html" title="enum in net.minestom.server.stat">StatisticCategory</a></li>
 <li><a href="net/minestom/server/network/packet/server/play/StatisticsPacket.html" title="class in net.minestom.server.network.packet.server.play">StatisticsPacket</a></li>
 <li><a href="net/minestom/server/network/packet/server/play/StatisticsPacket.Statistic.html" title="class in net.minestom.server.network.packet.server.play">StatisticsPacket.Statistic</a></li>
@@ -1389,6 +1411,7 @@
 <li><a href="net/minestom/server/network/packet/server/play/TeamsPacket.CollisionRule.html" title="enum in net.minestom.server.network.packet.server.play">TeamsPacket.CollisionRule</a></li>
 <li><a href="net/minestom/server/network/packet/server/play/TeamsPacket.NameTagVisibility.html" title="enum in net.minestom.server.network.packet.server.play">TeamsPacket.NameTagVisibility</a></li>
 <li><a href="net/minestom/server/utils/cache/TemporaryCache.html" title="class in net.minestom.server.utils.cache">TemporaryCache</a></li>
+<li><a href="net/minestom/server/utils/cache/TemporaryPacketCache.html" title="class in net.minestom.server.utils.cache">TemporaryPacketCache</a></li>
 <li><a href="net/minestom/server/thread/ThreadProvider.html" title="class in net.minestom.server.thread">ThreadProvider</a></li>
 <li><a href="net/minestom/server/benchmark/ThreadResult.html" title="class in net.minestom.server.benchmark">ThreadResult</a></li>
 <li><a href="net/minestom/server/entity/metadata/item/ThrownEggMeta.html" title="class in net.minestom.server.entity.metadata.item">ThrownEggMeta</a></li>
@@ -1396,6 +1419,7 @@
 <li><a href="net/minestom/server/entity/metadata/item/ThrownExperienceBottleMeta.html" title="class in net.minestom.server.entity.metadata.item">ThrownExperienceBottleMeta</a></li>
 <li><a href="net/minestom/server/entity/metadata/item/ThrownPotionMeta.html" title="class in net.minestom.server.entity.metadata.item">ThrownPotionMeta</a></li>
 <li><a href="net/minestom/server/entity/metadata/arrow/ThrownTridentMeta.html" title="class in net.minestom.server.entity.metadata.arrow">ThrownTridentMeta</a></li>
+<li><a href="net/minestom/server/utils/TickUtils.html" title="class in net.minestom.server.utils">TickUtils</a></li>
 <li><a href="net/minestom/server/utils/cache/TimedBuffer.html" title="class in net.minestom.server.utils.cache">TimedBuffer</a></li>
 <li><a href="net/minestom/server/potion/TimedPotion.html" title="class in net.minestom.server.potion">TimedPotion</a></li>
 <li><a href="net/minestom/server/utils/time/TimeUnit.html" title="enum in net.minestom.server.utils.time">TimeUnit</a></li>

@@ -123,7 +123,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList">
 <dl>
 <dt>All Superinterfaces:</dt>
-<dd><code><a href="ClientPacket.html" title="interface in net.minestom.server.network.packet.client">ClientPacket</a></code>, <code><a href="../../../utils/binary/Readable.html" title="interface in net.minestom.server.utils.binary">Readable</a></code></dd>
+<dd><code><a href="ClientPacket.html" title="interface in net.minestom.server.network.packet.client">ClientPacket</a></code>, <code><a href="../../../utils/binary/Readable.html" title="interface in net.minestom.server.utils.binary">Readable</a></code>, <code><a href="../../../utils/binary/Writeable.html" title="interface in net.minestom.server.utils.binary">Writeable</a></code></dd>
 </dl>
 <dl>
 <dt>All Known Implementing Classes:</dt>
@@ -177,12 +177,19 @@ extends <a href="ClientPacket.html" title="interface in net.minestom.server.netw
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#process(net.minestom.server.network.player.PlayerConnection)">process</a></span>&#8203;(<a href="../../player/PlayerConnection.html" title="class in net.minestom.server.network.player">PlayerConnection</a>&nbsp;connection)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#process(net.minestom.server.network.player.PlayerConnection)">process</a></span>&#8203;(@NotNull <a href="../../player/PlayerConnection.html" title="class in net.minestom.server.network.player">PlayerConnection</a>&nbsp;connection)</code></th>
 <td class="colLast">
 <div class="block">Called when the packet is received.</div>
 </td>
 </tr>
 </table>
+<ul class="blockList">
+<li class="blockList"><a id="methods.inherited.from.class.net.minestom.server.network.packet.client.ClientPacket">
+<!--   -->
+</a>
+<h3>Methods inherited from interface&nbsp;net.minestom.server.network.packet.client.<a href="ClientPacket.html" title="interface in net.minestom.server.network.packet.client">ClientPacket</a></h3>
+<code><a href="ClientPacket.html#write(net.minestom.server.utils.binary.BinaryWriter)">write</a></code></li>
+</ul>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.net.minestom.server.utils.binary.Readable">
 <!--   -->
@@ -232,7 +239,7 @@ extends <a href="ClientPacket.html" title="interface in net.minestom.server.netw
 <li class="blockList">
 <h4>process</h4>
 <pre class="methodSignature">void&nbsp;process&#8203;(@NotNull
-             <a href="../../player/PlayerConnection.html" title="class in net.minestom.server.network.player">PlayerConnection</a>&nbsp;connection)</pre>
+             @NotNull <a href="../../player/PlayerConnection.html" title="class in net.minestom.server.network.player">PlayerConnection</a>&nbsp;connection)</pre>
 <div class="block">Called when the packet is received.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>

@@ -26,8 +26,8 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":42,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10};
-var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"],32:["t6","Deprecated Methods"]};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10};
+var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
 var tableTab = "tableTab";
@@ -119,7 +119,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </div>
 <div class="contentContainer">
 <ul class="inheritance">
-<li>java.lang.Object</li>
+<li><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
 <li>net.minestom.server.utils.BlockPosition</li>
@@ -131,11 +131,11 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList">
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd><code>java.lang.Cloneable</code>, <code><a href="clone/PublicCloneable.html" title="interface in net.minestom.server.utils.clone">PublicCloneable</a>&lt;<a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a>&gt;</code></dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Cloneable.html?is-external=true" title="class or interface in java.lang" class="externalLink">Cloneable</a></code>, <code><a href="clone/PublicCloneable.html" title="interface in net.minestom.server.utils.clone">PublicCloneable</a>&lt;<a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a>&gt;</code></dd>
 </dl>
 <hr>
 <pre>public class <span class="typeNameLabel">BlockPosition</span>
-extends java.lang.Object
+extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a>
 implements <a href="clone/PublicCloneable.html" title="interface in net.minestom.server.utils.clone">PublicCloneable</a>&lt;<a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a>&gt;</pre>
 <div class="block">Represents the position of a block, so with integers instead of floating numbers.</div>
 </li>
@@ -174,7 +174,7 @@ implements <a href="clone/PublicCloneable.html" title="interface in net.minestom
 </td>
 </tr>
 <tr class="altColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(net.minestom.server.utils.Vector)">BlockPosition</a></span>&#8203;(<a href="Vector.html" title="class in net.minestom.server.utils">Vector</a>&nbsp;position)</code></th>
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(net.minestom.server.utils.Vector)">BlockPosition</a></span>&#8203;(@NotNull <a href="Vector.html" title="class in net.minestom.server.utils">Vector</a>&nbsp;position)</code></th>
 <td class="colLast">
 <div class="block">Creates a new <a href="BlockPosition.html" title="class in net.minestom.server.utils"><code>BlockPosition</code></a> from a <a href="Vector.html" title="class in net.minestom.server.utils"><code>Vector</code></a>.</div>
 </td>
@@ -191,14 +191,14 @@ implements <a href="clone/PublicCloneable.html" title="interface in net.minestom
 </a>
 <h3>Method Summary</h3>
 <table class="memberSummary">
-<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t6" class="tableTab"><span><a href="javascript:show(32);">Deprecated Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colSecond" scope="col">Method</th>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code><a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a></code></td>
+<td class="colFirst"><code>@NotNull <a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#add(int,int,int)">add</a></span>&#8203;(int&nbsp;x,
    int&nbsp;y,
    int&nbsp;z)</code></th>
@@ -207,117 +207,108 @@ implements <a href="clone/PublicCloneable.html" title="interface in net.minestom
 </td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code><a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#add(net.minestom.server.utils.BlockPosition)">add</a></span>&#8203;(<a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a>&nbsp;pos)</code></th>
+<td class="colFirst"><code>@NotNull <a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#add(net.minestom.server.utils.BlockPosition)">add</a></span>&#8203;(@NotNull <a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a>&nbsp;pos)</code></th>
 <td class="colLast">
 <div class="block">Adds offsets to this block position.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code><a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a></code></td>
+<td class="colFirst"><code>@NotNull <a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#clone()">clone</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Creates and returns a copy of this object.</div>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
-<td class="colFirst"><code><a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#copy()">copy</a></span>()</code></th>
-<td class="colLast">
-<div class="block"><span class="deprecatedLabel">Deprecated.</span>
-<div class="deprecationComment">use <a href="#clone()"><code>clone()</code></a></div>
-</div>
-</td>
-</tr>
-<tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#copyCoordinates(net.minestom.server.utils.BlockPosition)">copyCoordinates</a></span>&#8203;(<a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a>&nbsp;blockPosition)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#copyCoordinates(net.minestom.server.utils.BlockPosition)">copyCoordinates</a></span>&#8203;(@NotNull <a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a>&nbsp;blockPosition)</code></th>
 <td class="colLast">
 <div class="block">Sets the x/y/z fields of this block position to the value of <code>block position</code>.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#equals(java.lang.Object)">equals</a></span>&#8203;(java.lang.Object&nbsp;o)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#equals(java.lang.Object)">equals</a></span>&#8203;(<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a>&nbsp;o)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>double</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getDistance(net.minestom.server.utils.BlockPosition)">getDistance</a></span>&#8203;(<a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a>&nbsp;blockPosition)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getDistance(net.minestom.server.utils.BlockPosition)">getDistance</a></span>&#8203;(@NotNull <a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a>&nbsp;blockPosition)</code></th>
 <td class="colLast">
 <div class="block">Gets the distance to another block position.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getDistanceSquared(net.minestom.server.utils.BlockPosition)">getDistanceSquared</a></span>&#8203;(<a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a>&nbsp;blockPosition)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getDistanceSquared(net.minestom.server.utils.BlockPosition)">getDistanceSquared</a></span>&#8203;(@NotNull <a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a>&nbsp;blockPosition)</code></th>
 <td class="colLast">
 <div class="block">Gets the square distance to another block position.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getManhattanDistance(net.minestom.server.utils.BlockPosition)">getManhattanDistance</a></span>&#8203;(<a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a>&nbsp;blockPosition)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getManhattanDistance(net.minestom.server.utils.BlockPosition)">getManhattanDistance</a></span>&#8203;(@NotNull <a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a>&nbsp;blockPosition)</code></th>
 <td class="colLast">
 <div class="block">Gets the manhattan distance to another block position.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
-<td class="colFirst"><code><a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a></code></td>
+<tr id="i8" class="altColor">
+<td class="colFirst"><code>@NotNull <a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getRelative(net.minestom.server.instance.block.BlockFace)">getRelative</a></span>&#8203;(<a href="../instance/block/BlockFace.html" title="enum in net.minestom.server.instance.block">BlockFace</a>&nbsp;face)</code></th>
 <td class="colLast">
 <div class="block">Gets BlockPosition relative to a <a href="../instance/block/BlockFace.html" title="enum in net.minestom.server.instance.block"><code>BlockFace</code></a></div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getX()">getX</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Gets the block X.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getY()">getY</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Gets the block Y.</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getZ()">getZ</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Gets the block Z.</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#hashCode()">hashCode</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setX(int)">setX</a></span>&#8203;(int&nbsp;x)</code></th>
 <td class="colLast">
 <div class="block">Changes the X field.</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setY(int)">setY</a></span>&#8203;(int&nbsp;y)</code></th>
 <td class="colLast">
 <div class="block">Changes the Y field.</div>
 </td>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setZ(int)">setZ</a></span>&#8203;(int&nbsp;z)</code></th>
 <td class="colLast">
 <div class="block">Changes the Z field.</div>
 </td>
 </tr>
-<tr id="i17" class="rowColor">
-<td class="colFirst"><code><a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a></code></td>
+<tr id="i16" class="altColor">
+<td class="colFirst"><code>@NotNull <a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#subtract(int,int,int)">subtract</a></span>&#8203;(int&nbsp;x,
         int&nbsp;y,
         int&nbsp;z)</code></th>
@@ -325,22 +316,22 @@ implements <a href="clone/PublicCloneable.html" title="interface in net.minestom
 <div class="block">Subtracts offsets to this block position.</div>
 </td>
 </tr>
-<tr id="i18" class="altColor">
-<td class="colFirst"><code><a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#subtract(net.minestom.server.utils.BlockPosition)">subtract</a></span>&#8203;(<a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a>&nbsp;pos)</code></th>
+<tr id="i17" class="rowColor">
+<td class="colFirst"><code>@NotNull <a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#subtract(net.minestom.server.utils.BlockPosition)">subtract</a></span>&#8203;(@NotNull <a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a>&nbsp;pos)</code></th>
 <td class="colLast">
 <div class="block">Subtracts offsets to this block position.</div>
 </td>
 </tr>
-<tr id="i19" class="rowColor">
-<td class="colFirst"><code><a href="Position.html" title="class in net.minestom.server.utils">Position</a></code></td>
+<tr id="i18" class="altColor">
+<td class="colFirst"><code>@NotNull <a href="Position.html" title="class in net.minestom.server.utils">Position</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toPosition()">toPosition</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Converts this block position to a <a href="Position.html" title="class in net.minestom.server.utils"><code>Position</code></a>.</div>
 </td>
 </tr>
-<tr id="i20" class="altColor">
-<td class="colFirst"><code>java.lang.String</code></td>
+<tr id="i19" class="rowColor">
+<td class="colFirst"><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toString()">toString</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
@@ -349,8 +340,8 @@ implements <a href="clone/PublicCloneable.html" title="interface in net.minestom
 <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
 <!--   -->
 </a>
-<h3>Methods inherited from class&nbsp;java.lang.Object</h3>
-<code>finalize, getClass, notify, notifyAll, wait, wait, wait</code></li>
+<h3>Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a></h3>
+<code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#finalize()" title="class or interface in java.lang" class="externalLink">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#getClass()" title="class or interface in java.lang" class="externalLink">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#notify()" title="class or interface in java.lang" class="externalLink">notify</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#notifyAll()" title="class or interface in java.lang" class="externalLink">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#wait()" title="class or interface in java.lang" class="externalLink">wait</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#wait(long)" title="class or interface in java.lang" class="externalLink">wait</a>, <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#wait(long,int)" title="class or interface in java.lang" class="externalLink">wait</a></code></li>
 </ul>
 </li>
 </ul>
@@ -413,7 +404,7 @@ implements <a href="clone/PublicCloneable.html" title="interface in net.minestom
 <li class="blockList">
 <h4>BlockPosition</h4>
 <pre>public&nbsp;BlockPosition&#8203;(@NotNull
-                     <a href="Vector.html" title="class in net.minestom.server.utils">Vector</a>&nbsp;position)</pre>
+                     @NotNull <a href="Vector.html" title="class in net.minestom.server.utils">Vector</a>&nbsp;position)</pre>
 <div class="block">Creates a new <a href="BlockPosition.html" title="class in net.minestom.server.utils"><code>BlockPosition</code></a> from a <a href="Vector.html" title="class in net.minestom.server.utils"><code>Vector</code></a>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -440,9 +431,9 @@ implements <a href="clone/PublicCloneable.html" title="interface in net.minestom
 <li class="blockList">
 <h4>add</h4>
 <pre class="methodSignature">@NotNull
-public&nbsp;<a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a>&nbsp;add&#8203;(int&nbsp;x,
-                         int&nbsp;y,
-                         int&nbsp;z)</pre>
+public&nbsp;@NotNull <a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a>&nbsp;add&#8203;(int&nbsp;x,
+                                  int&nbsp;y,
+                                  int&nbsp;z)</pre>
 <div class="block">Adds offsets to this block position.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -461,9 +452,9 @@ public&nbsp;<a href="BlockPosition.html" title="class in net.minestom.server.uti
 <li class="blockList">
 <h4>subtract</h4>
 <pre class="methodSignature">@NotNull
-public&nbsp;<a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a>&nbsp;subtract&#8203;(int&nbsp;x,
-                              int&nbsp;y,
-                              int&nbsp;z)</pre>
+public&nbsp;@NotNull <a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a>&nbsp;subtract&#8203;(int&nbsp;x,
+                                       int&nbsp;y,
+                                       int&nbsp;z)</pre>
 <div class="block">Subtracts offsets to this block position.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -482,8 +473,8 @@ public&nbsp;<a href="BlockPosition.html" title="class in net.minestom.server.uti
 <li class="blockList">
 <h4>add</h4>
 <pre class="methodSignature">@NotNull
-public&nbsp;<a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a>&nbsp;add&#8203;(@NotNull
-                         <a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a>&nbsp;pos)</pre>
+public&nbsp;@NotNull <a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a>&nbsp;add&#8203;(@NotNull
+                                  @NotNull <a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a>&nbsp;pos)</pre>
 <div class="block">Adds offsets to this block position.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -500,8 +491,8 @@ public&nbsp;<a href="BlockPosition.html" title="class in net.minestom.server.uti
 <li class="blockList">
 <h4>subtract</h4>
 <pre class="methodSignature">@NotNull
-public&nbsp;<a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a>&nbsp;subtract&#8203;(@NotNull
-                              <a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a>&nbsp;pos)</pre>
+public&nbsp;@NotNull <a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a>&nbsp;subtract&#8203;(@NotNull
+                                       @NotNull <a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a>&nbsp;pos)</pre>
 <div class="block">Subtracts offsets to this block position.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -608,7 +599,7 @@ public&nbsp;<a href="BlockPosition.html" title="class in net.minestom.server.uti
 <li class="blockList">
 <h4>getManhattanDistance</h4>
 <pre class="methodSignature">public&nbsp;int&nbsp;getManhattanDistance&#8203;(@NotNull
-                                <a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a>&nbsp;blockPosition)</pre>
+                                @NotNull <a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a>&nbsp;blockPosition)</pre>
 <div class="block">Gets the manhattan distance to another block position.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -625,7 +616,7 @@ public&nbsp;<a href="BlockPosition.html" title="class in net.minestom.server.uti
 <li class="blockList">
 <h4>getDistance</h4>
 <pre class="methodSignature">public&nbsp;double&nbsp;getDistance&#8203;(@NotNull
-                          <a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a>&nbsp;blockPosition)</pre>
+                          @NotNull <a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a>&nbsp;blockPosition)</pre>
 <div class="block">Gets the distance to another block position.
  In cases where performance matters, <a href="#getDistanceSquared(net.minestom.server.utils.BlockPosition)"><code>getDistanceSquared(BlockPosition)</code></a> should be used
  as it does not perform the expensive Math.sqrt method.</div>
@@ -644,32 +635,13 @@ public&nbsp;<a href="BlockPosition.html" title="class in net.minestom.server.uti
 <li class="blockList">
 <h4>getDistanceSquared</h4>
 <pre class="methodSignature">public&nbsp;int&nbsp;getDistanceSquared&#8203;(@NotNull
-                              <a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a>&nbsp;blockPosition)</pre>
+                              @NotNull <a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a>&nbsp;blockPosition)</pre>
 <div class="block">Gets the square distance to another block position.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>blockPosition</code> - the block position to check the distance</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the distance between 'this' and <code>blockPosition</code></dd>
-</dl>
-</li>
-</ul>
-<a id="copy()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>copy</h4>
-<pre class="methodSignature">@Deprecated
-@NotNull
-public&nbsp;<a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a>&nbsp;copy()</pre>
-<div class="deprecationBlock"><span class="deprecatedLabel">Deprecated.</span>
-<div class="deprecationComment">use <a href="#clone()"><code>clone()</code></a></div>
-</div>
-<div class="block">Copies this block position.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>the cloned block position</dd>
 </dl>
 </li>
 </ul>
@@ -680,14 +652,14 @@ public&nbsp;<a href="BlockPosition.html" title="class in net.minestom.server.uti
 <li class="blockList">
 <h4>clone</h4>
 <pre class="methodSignature">@NotNull
-public&nbsp;<a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a>&nbsp;clone()</pre>
+public&nbsp;@NotNull <a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a>&nbsp;clone()</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="clone/PublicCloneable.html#clone()">PublicCloneable</a></code></span></div>
 <div class="block">Creates and returns a copy of this object.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="clone/PublicCloneable.html#clone()">clone</a></code>&nbsp;in interface&nbsp;<code><a href="clone/PublicCloneable.html" title="interface in net.minestom.server.utils.clone">PublicCloneable</a>&lt;<a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a>&gt;</code></dd>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code>clone</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#clone()" title="class or interface in java.lang" class="externalLink">clone</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A clone of this instance.</dd>
 </dl>
@@ -700,7 +672,7 @@ public&nbsp;<a href="BlockPosition.html" title="class in net.minestom.server.uti
 <li class="blockList">
 <h4>copyCoordinates</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;copyCoordinates&#8203;(@NotNull
-                            <a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a>&nbsp;blockPosition)</pre>
+                            @NotNull <a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a>&nbsp;blockPosition)</pre>
 <div class="block">Sets the x/y/z fields of this block position to the value of <code>block position</code>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -715,7 +687,7 @@ public&nbsp;<a href="BlockPosition.html" title="class in net.minestom.server.uti
 <li class="blockList">
 <h4>toPosition</h4>
 <pre class="methodSignature">@NotNull
-public&nbsp;<a href="Position.html" title="class in net.minestom.server.utils">Position</a>&nbsp;toPosition()</pre>
+public&nbsp;@NotNull <a href="Position.html" title="class in net.minestom.server.utils">Position</a>&nbsp;toPosition()</pre>
 <div class="block">Converts this block position to a <a href="Position.html" title="class in net.minestom.server.utils"><code>Position</code></a>.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -730,7 +702,7 @@ public&nbsp;<a href="Position.html" title="class in net.minestom.server.utils">P
 <li class="blockList">
 <h4>getRelative</h4>
 <pre class="methodSignature">@NotNull
-public&nbsp;<a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a>&nbsp;getRelative&#8203;(<a href="../instance/block/BlockFace.html" title="enum in net.minestom.server.instance.block">BlockFace</a>&nbsp;face)</pre>
+public&nbsp;@NotNull <a href="BlockPosition.html" title="class in net.minestom.server.utils">BlockPosition</a>&nbsp;getRelative&#8203;(<a href="../instance/block/BlockFace.html" title="enum in net.minestom.server.instance.block">BlockFace</a>&nbsp;face)</pre>
 <div class="block">Gets BlockPosition relative to a <a href="../instance/block/BlockFace.html" title="enum in net.minestom.server.instance.block"><code>BlockFace</code></a></div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -746,10 +718,10 @@ public&nbsp;<a href="BlockPosition.html" title="class in net.minestom.server.uti
 <ul class="blockList">
 <li class="blockList">
 <h4>equals</h4>
-<pre class="methodSignature">public&nbsp;boolean&nbsp;equals&#8203;(java.lang.Object&nbsp;o)</pre>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;equals&#8203;(<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a>&nbsp;o)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code>equals</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#equals(java.lang.Object)" title="class or interface in java.lang" class="externalLink">equals</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -762,7 +734,7 @@ public&nbsp;<a href="BlockPosition.html" title="class in net.minestom.server.uti
 <pre class="methodSignature">public&nbsp;int&nbsp;hashCode()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code>hashCode</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#hashCode()" title="class or interface in java.lang" class="externalLink">hashCode</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -772,10 +744,10 @@ public&nbsp;<a href="BlockPosition.html" title="class in net.minestom.server.uti
 <ul class="blockListLast">
 <li class="blockList">
 <h4>toString</h4>
-<pre class="methodSignature">public&nbsp;java.lang.String&nbsp;toString()</pre>
+<pre class="methodSignature">public&nbsp;<a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;toString()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code>toString</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true#toString()" title="class or interface in java.lang" class="externalLink">toString</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a></code></dd>
 </dl>
 </li>
 </ul>

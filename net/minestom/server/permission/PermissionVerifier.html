@@ -126,7 +126,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>This is a functional interface and can therefore be used as the assignment target for a lambda expression or method reference.</dd>
 </dl>
 <hr>
-<pre>@FunctionalInterface
+<pre><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/FunctionalInterface.html?is-external=true" title="class or interface in java.lang" class="externalLink">@FunctionalInterface</a>
 public interface <span class="typeNameLabel">PermissionVerifier</span></pre>
 <div class="block">Interface used to check if the <code>nbt data</code> of a <a href="Permission.html" title="class in net.minestom.server.permission"><code>Permission</code></a> is correct.</div>
 </li>
@@ -151,7 +151,7 @@ public interface <span class="typeNameLabel">PermissionVerifier</span></pre>
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isValid(org.jglrxavpok.hephaistos.nbt.NBTCompound)">isValid</a></span>&#8203;(org.jglrxavpok.hephaistos.nbt.NBTCompound&nbsp;nbtCompound)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isValid(org.jglrxavpok.hephaistos.nbt.NBTCompound)">isValid</a></span>&#8203;(@Nullable org.jglrxavpok.hephaistos.nbt.NBTCompound&nbsp;nbtCompound)</code></th>
 <td class="colLast">
 <div class="block">Called when using <a href="PermissionHandler.html#hasPermission(java.lang.String,net.minestom.server.permission.PermissionVerifier)"><code>PermissionHandler.hasPermission(String, PermissionVerifier)</code></a>.</div>
 </td>
@@ -180,7 +180,7 @@ public interface <span class="typeNameLabel">PermissionVerifier</span></pre>
 <li class="blockList">
 <h4>isValid</h4>
 <pre class="methodSignature">boolean&nbsp;isValid&#8203;(@Nullable
-                org.jglrxavpok.hephaistos.nbt.NBTCompound&nbsp;nbtCompound)</pre>
+                @Nullable org.jglrxavpok.hephaistos.nbt.NBTCompound&nbsp;nbtCompound)</pre>
 <div class="block">Called when using <a href="PermissionHandler.html#hasPermission(java.lang.String,net.minestom.server.permission.PermissionVerifier)"><code>PermissionHandler.hasPermission(String, PermissionVerifier)</code></a>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>

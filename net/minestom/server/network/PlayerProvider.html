@@ -126,7 +126,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>This is a functional interface and can therefore be used as the assignment target for a lambda expression or method reference.</dd>
 </dl>
 <hr>
-<pre>@FunctionalInterface
+<pre><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/FunctionalInterface.html?is-external=true" title="class or interface in java.lang" class="externalLink">@FunctionalInterface</a>
 public interface <span class="typeNameLabel">PlayerProvider</span></pre>
 <div class="block">Used when you want to provide your own player object instead of using the default one.
  <p>
@@ -152,10 +152,10 @@ public interface <span class="typeNameLabel">PlayerProvider</span></pre>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code><a href="../entity/Player.html" title="class in net.minestom.server.entity">Player</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#createPlayer(java.util.UUID,java.lang.String,net.minestom.server.network.player.PlayerConnection)">createPlayer</a></span>&#8203;(java.util.UUID&nbsp;uuid,
-            java.lang.String&nbsp;username,
-            <a href="player/PlayerConnection.html" title="class in net.minestom.server.network.player">PlayerConnection</a>&nbsp;connection)</code></th>
+<td class="colFirst"><code>@NotNull <a href="../entity/Player.html" title="class in net.minestom.server.entity">Player</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#createPlayer(java.util.UUID,java.lang.String,net.minestom.server.network.player.PlayerConnection)">createPlayer</a></span>&#8203;(@NotNull <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/UUID.html?is-external=true" title="class or interface in java.util" class="externalLink">UUID</a>&nbsp;uuid,
+            @NotNull <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;username,
+            @NotNull <a href="player/PlayerConnection.html" title="class in net.minestom.server.network.player">PlayerConnection</a>&nbsp;connection)</code></th>
 <td class="colLast">
 <div class="block">Creates a new <a href="../entity/Player.html" title="class in net.minestom.server.entity"><code>Player</code></a> object based on his connection data.</div>
 </td>
@@ -184,18 +184,18 @@ public interface <span class="typeNameLabel">PlayerProvider</span></pre>
 <li class="blockList">
 <h4>createPlayer</h4>
 <pre class="methodSignature">@NotNull
-<a href="../entity/Player.html" title="class in net.minestom.server.entity">Player</a>&nbsp;createPlayer&#8203;(@NotNull
-                    java.util.UUID&nbsp;uuid,
-                    @NotNull
-                    java.lang.String&nbsp;username,
-                    @NotNull
-                    <a href="player/PlayerConnection.html" title="class in net.minestom.server.network.player">PlayerConnection</a>&nbsp;connection)</pre>
+@NotNull <a href="../entity/Player.html" title="class in net.minestom.server.entity">Player</a>&nbsp;createPlayer&#8203;(@NotNull
+                             @NotNull <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/UUID.html?is-external=true" title="class or interface in java.util" class="externalLink">UUID</a>&nbsp;uuid,
+                             @NotNull
+                             @NotNull <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;username,
+                             @NotNull
+                             @NotNull <a href="player/PlayerConnection.html" title="class in net.minestom.server.network.player">PlayerConnection</a>&nbsp;connection)</pre>
 <div class="block">Creates a new <a href="../entity/Player.html" title="class in net.minestom.server.entity"><code>Player</code></a> object based on his connection data.
  <p>
  Called once a client want to join the server and need to have an assigned player object.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>uuid</code> - the player <code>UUID</code></dd>
+<dd><code>uuid</code> - the player <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/UUID.html?is-external=true" title="class or interface in java.util" class="externalLink"><code>UUID</code></a></dd>
 <dd><code>username</code> - the player username</dd>
 <dd><code>connection</code> - the player connection</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
