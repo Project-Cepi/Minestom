@@ -7,27 +7,14 @@ import net.minestom.server.utils.Vector;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * See https://wiki.vg/Entity_metadata#Mobs_2
+ * Represents a {@link BoundingBox} linked to an {@link Entity} and with a specific size.
+ *
+ * @param entity     the linked entity
+ * @param width      the width size
+ * @param height     the height size
+ * @param depth      the depth size
  */
-public class BoundingBox {
-
-    private final Entity entity;
-    private final double x, y, z;
-
-    /**
-     * Creates a {@link BoundingBox} linked to an {@link Entity} and with a specific size.
-     *
-     * @param entity the linked entity
-     * @param x      the width size
-     * @param y      the height size
-     * @param z      the depth size
-     */
-    public BoundingBox(@NotNull Entity entity, double x, double y, double z) {
-        this.entity = entity;
-        this.x = x;
-        this.y = y;
-        this.z = z;
-    }
+public record BoundingBox(@NotNull Entity entity, double width, double height, double depth) {
 
     /**
      * Used to know if two {@link BoundingBox} intersect with each other.
@@ -102,7 +89,7 @@ public class BoundingBox {
      */
     @NotNull
     public BoundingBox expand(double x, double y, double z) {
-        return new BoundingBox(entity, this.x + x, this.y + y, this.z + z);
+        return new BoundingBox(entity, this.width + x, this.height + y, this.depth + z);
     }
 
     /**
@@ -115,52 +102,25 @@ public class BoundingBox {
      */
     @NotNull
     public BoundingBox contract(double x, double y, double z) {
-        return new BoundingBox(entity, this.x - x, this.y - y, this.z - z);
+        return new BoundingBox(entity, this.width - x, this.height - y, this.depth - z);
     }
 
     /**
-     * Gets the width of the {@link BoundingBox}.
-     *
-     * @return the width
-     */
-    public double getWidth() {
-        return x;
-    }
-
-    /**
-     * Gets the height of the {@link BoundingBox}.
-     *
-     * @return the height
-     */
-    public double getHeight() {
-        return y;
-    }
-
-    /**
-     * Gets the depth of the {@link BoundingBox}.
-     *
-     * @return the depth
-     */
-    public double getDepth() {
-        return z;
-    }
-
-    /**
-     * Gets the min X based on {@link #getWidth()} and the {@link Entity} position.
+     * Gets the min X based on {@link #width()} and the {@link Entity} position.
      *
      * @return the min X
      */
     public double getMinX() {
-        return entity.getPosition().getX() - (x / 2);
+        return entity.getPosition().getX() - (width / 2);
     }
 
     /**
-     * Gets the max X based on {@link #getWidth()} and the {@link Entity} position.
+     * Gets the max X based on {@link #width()} and the {@link Entity} position.
      *
      * @return the max X
      */
     public double getMaxX() {
-        return entity.getPosition().getX() + (x / 2);
+        return entity.getPosition().getX() + (width / 2);
     }
 
     /**
@@ -173,30 +133,30 @@ public class BoundingBox {
     }
 
     /**
-     * Gets the max Y based on {@link #getHeight()} and the {@link Entity} position.
+     * Gets the max Y based on {@link #height()} and the {@link Entity} position.
      *
      * @return the max Y
      */
     public double getMaxY() {
-        return entity.getPosition().getY() + y;
+        return entity.getPosition().getY() + height;
     }
 
     /**
-     * Gets the min Z based on {@link #getDepth()} and the {@link Entity} position.
+     * Gets the min Z based on {@link #depth()} and the {@link Entity} position.
      *
      * @return the min Z
      */
     public double getMinZ() {
-        return entity.getPosition().getZ() - (z / 2);
+        return entity.getPosition().getZ() - (depth / 2);
     }
 
     /**
-     * Gets the max Z based on {@link #getDepth()} and the {@link Entity} position.
+     * Gets the max Z based on {@link #depth()} and the {@link Entity} position.
      *
      * @return the max Z
      */
     public double getMaxZ() {
-        return entity.getPosition().getZ() + (z / 2);
+        return entity.getPosition().getZ() + (depth / 2);
     }
 
     /**

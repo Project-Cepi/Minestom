@@ -647,14 +647,14 @@ public class Entity implements Viewable, Tickable, EventHandler, DataContainer, 
             // remove expired effects
             if (!effects.isEmpty()) {
                 this.effects.removeIf(timedPotion -> {
-                    final long potionTime = (long) timedPotion.getPotion().getDuration() * MinecraftServer.TICK_MS;
+                    final long potionTime = (long) timedPotion.potion().duration() * MinecraftServer.TICK_MS;
                     // Remove if the potion should be expired
-                    if (time >= timedPotion.getStartingTime() + potionTime) {
+                    if (time >= timedPotion.startingTime() + potionTime) {
                         // Send the packet that the potion should no longer be applied
-                        timedPotion.getPotion().sendRemovePacket(this);
+                        timedPotion.potion().sendRemovePacket(this);
                         callEvent(EntityPotionRemoveEvent.class, new EntityPotionRemoveEvent(
                                 this,
-                                timedPotion.getPotion()
+                                timedPotion.potion()
                         ));
                         return true;
                     }
@@ -1435,12 +1435,12 @@ public class Entity implements Viewable, Tickable, EventHandler, DataContainer, 
     /**
      * Gets the entity eye height.
      * <p>
-     * Default to {@link BoundingBox#getHeight()}x0.85
+     * Default to {@link BoundingBox#height()}x0.85
      *
      * @return the entity eye height
      */
     public double getEyeHeight() {
-        return boundingBox.getHeight() * 0.85;
+        return boundingBox.height() * 0.85;
     }
 
     /**
@@ -1459,7 +1459,7 @@ public class Entity implements Viewable, Tickable, EventHandler, DataContainer, 
      * @param potion The potion to add
      */
     public void addEffect(@NotNull Potion potion) {
-        removeEffect(potion.getEffect());
+        removeEffect(potion.effect());
         this.effects.add(new TimedPotion(potion, System.currentTimeMillis()));
         potion.sendAddPacket(this);
         callEvent(EntityPotionAddEvent.class, new EntityPotionAddEvent(this, potion));
@@ -1472,11 +1472,11 @@ public class Entity implements Viewable, Tickable, EventHandler, DataContainer, 
      */
     public void removeEffect(@NotNull PotionEffect effect) {
         this.effects.removeIf(timedPotion -> {
-            if (timedPotion.getPotion().getEffect() == effect) {
-                timedPotion.getPotion().sendRemovePacket(this);
+            if (timedPotion.potion().effect() == effect) {
+                timedPotion.potion().sendRemovePacket(this);
                 callEvent(EntityPotionRemoveEvent.class, new EntityPotionRemoveEvent(
                         this,
-                        timedPotion.getPotion()
+                        timedPotion.potion()
                 ));
                 return true;
             }
@@ -1489,10 +1489,10 @@ public class Entity implements Viewable, Tickable, EventHandler, DataContainer, 
      */
     public void clearEffects() {
         for (TimedPotion timedPotion : effects) {
-            timedPotion.getPotion().sendRemovePacket(this);
+            timedPotion.potion().sendRemovePacket(this);
             callEvent(EntityPotionRemoveEvent.class, new EntityPotionRemoveEvent(
                     this,
-                    timedPotion.getPotion()
+                    timedPotion.potion()
             ));
         }
         this.effects.clear();

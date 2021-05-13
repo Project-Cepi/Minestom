@@ -5,12 +5,7 @@ import net.minestom.server.network.packet.server.play.EntityEffectPacket;
 import net.minestom.server.network.packet.server.play.RemoveEntityEffectPacket;
 import org.jetbrains.annotations.NotNull;
 
-public class Potion {
-
-    private final PotionEffect effect;
-    private final byte amplifier;
-    private final int duration;
-    private final byte flags;
+public record Potion(@NotNull PotionEffect effect, byte amplifier, int duration, byte flags) {
 
     /**
      * Creates a new potion.
@@ -19,8 +14,8 @@ public class Potion {
      * @param amplifier The strength of the potion.
      * @param duration  The length of the potion in ticks.
      */
-    public Potion(@NotNull PotionEffect effect, byte amplifier, int duration) {
-        this(effect, amplifier, duration, true, true, false);
+    public static Potion of(@NotNull PotionEffect effect, byte amplifier, int duration) {
+        return Potion.of(effect, amplifier, duration, true, true, false);
     }
 
     /**
@@ -31,8 +26,8 @@ public class Potion {
      * @param duration  The length of the potion in ticks.
      * @param particles If the potion has particles.
      */
-    public Potion(@NotNull PotionEffect effect, byte amplifier, int duration, boolean particles) {
-        this(effect, amplifier, duration, particles, true, false);
+    public static Potion of(@NotNull PotionEffect effect, byte amplifier, int duration, boolean particles) {
+        return Potion.of(effect, amplifier, duration, particles, true, false);
     }
 
     /**
@@ -44,8 +39,8 @@ public class Potion {
      * @param particles If the potion has particles.
      * @param icon      If the potion has an icon.
      */
-    public Potion(@NotNull PotionEffect effect, byte amplifier, int duration, boolean particles, boolean icon) {
-        this(effect, amplifier, duration, particles, icon, false);
+    public static Potion of(@NotNull PotionEffect effect, byte amplifier, int duration, boolean particles, boolean icon) {
+        return Potion.of(effect, amplifier, duration, particles, icon, false);
     }
 
     /**
@@ -58,10 +53,7 @@ public class Potion {
      * @param icon      If the potion has an icon.
      * @param ambient   If the potion came from a beacon.
      */
-    public Potion(@NotNull PotionEffect effect, byte amplifier, int duration, boolean particles, boolean icon, boolean ambient) {
-        this.effect = effect;
-        this.amplifier = amplifier;
-        this.duration = duration;
+    public static Potion of(@NotNull PotionEffect effect, byte amplifier, int duration, boolean particles, boolean icon, boolean ambient) {
         byte flags = 0;
         if (ambient) {
             flags = (byte) (flags | 0x01);
@@ -72,24 +64,8 @@ public class Potion {
         if (icon) {
             flags = (byte) (flags | 0x04);
         }
-        this.flags = flags;
-    }
 
-    @NotNull
-    public PotionEffect getEffect() {
-        return effect;
-    }
-
-    public byte getAmplifier() {
-        return amplifier;
-    }
-
-    public int getDuration() {
-        return duration;
-    }
-
-    public byte getFlags() {
-        return flags;
+        return new Potion(effect, amplifier, duration, flags);
     }
 
     /**

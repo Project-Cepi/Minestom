@@ -14,16 +14,16 @@ public class EntityEffectPacket implements ServerPacket {
     public Potion potion;
 
     public EntityEffectPacket() {
-        potion = new Potion(PotionEffect.ABSORPTION, (byte) 0, 0);
+        potion = Potion.of(PotionEffect.ABSORPTION, (byte) 0, 0);
     }
 
     @Override
     public void write(@NotNull BinaryWriter writer) {
         writer.writeVarInt(entityId);
-        writer.writeByte((byte) potion.getEffect().getId());
-        writer.writeByte(potion.getAmplifier());
-        writer.writeVarInt(potion.getDuration());
-        writer.writeByte(potion.getFlags());
+        writer.writeByte((byte) potion.effect().getId());
+        writer.writeByte(potion.amplifier());
+        writer.writeVarInt(potion.duration());
+        writer.writeByte(potion.flags());
     }
 
     @Override
@@ -37,7 +37,7 @@ public class EntityEffectPacket implements ServerPacket {
         boolean particles = (flags & 0x02) == 0x02;
         boolean icon = (flags & 0x04) == 0x04;
 
-        potion = new Potion(PotionEffect.fromId(potionEffectID), amplifier, duration, particles, icon, ambient);
+        potion = Potion.of(PotionEffect.fromId(potionEffectID), amplifier, duration, particles, icon, ambient);
     }
 
     @Override

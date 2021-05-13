@@ -218,7 +218,7 @@ public class PlayerDiggingListener {
 
         EntityEffectPacket entityEffectPacket = new EntityEffectPacket();
         entityEffectPacket.entityId = player.getEntityId();
-        entityEffectPacket.potion = new Potion(
+        entityEffectPacket.potion = Potion.of(
                 PotionEffect.MINING_FATIGUE,
                 (byte) -1,
                 0,

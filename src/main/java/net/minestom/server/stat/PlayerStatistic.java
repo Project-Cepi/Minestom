@@ -8,26 +8,10 @@ import org.jetbrains.annotations.NotNull;
  * <p>
  * You can retrieve the statistics map with {@link Player#getStatisticValueMap()} and modify it with your own values.
  */
-public class PlayerStatistic {
-
-    private final StatisticCategory category;
-    private final int statisticId;
-
-    public PlayerStatistic(@NotNull StatisticCategory category, int statisticId) {
-        this.category = category;
-        this.statisticId = statisticId;
-    }
+public record PlayerStatistic(@NotNull StatisticCategory category, int statisticId) {
 
     public PlayerStatistic(@NotNull StatisticType type) {
         this(StatisticCategory.CUSTOM, type.getId());
     }
 
-    @NotNull
-    public StatisticCategory getCategory() {
-        return category;
-    }
-
-    public int getStatisticId() {
-        return statisticId;
-    }
 }

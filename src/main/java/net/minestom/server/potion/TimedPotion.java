@@ -2,22 +2,6 @@ package net.minestom.server.potion;
 
 import org.jetbrains.annotations.NotNull;
 
-public class TimedPotion {
+public record TimedPotion(@NotNull Potion potion, long startingTime) {
 
-    private final Potion potion;
-    private final long startingTime;
-
-    public TimedPotion(@NotNull Potion potion, long startingTime) {
-        this.potion = potion;
-        this.startingTime = startingTime;
-    }
-
-    @NotNull
-    public Potion getPotion() {
-        return potion;
-    }
-
-    public long getStartingTime() {
-        return startingTime;
-    }
 }
