@@ -680,7 +680,7 @@ public class ExtensionManager {
         } catch (IOException e) {
             MinecraftServer.getExceptionManager().handleException(e);
         }
-        
+
         MinestomRootClassLoader.getInstance().removeChildInHierarchy(classloader);
     }
 
