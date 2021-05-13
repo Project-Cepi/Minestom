@@ -9,8 +9,8 @@ import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
 import java.net.URL;
+import java.nio.file.Path;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -73,7 +73,7 @@ public final class DiscoveredExtension {
     transient LoadStatus loadStatus = LoadStatus.LOAD_SUCCESS;
 
     /** The original jar this is from. */
-    transient private File originalJar;
+    transient private Path originalJar;
 
     /** The class loader that powers it. */
     transient private MinestomExtensionClassLoader minestomExtensionClassLoader;
@@ -121,12 +121,12 @@ public final class DiscoveredExtension {
         return externalDependencies;
     }
 
-    public void setOriginalJar(@Nullable File file) {
+    public void setOriginalJar(@Nullable Path file) {
         originalJar = file;
     }
 
     @Nullable
-    public File getOriginalJar() {
+    public Path getOriginalJar() {
         return originalJar;
     }
 
