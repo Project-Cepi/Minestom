@@ -367,7 +367,11 @@ public class ExtensionManager {
     @Nullable
     private DiscoveredExtension discoverFromJar(@NotNull Path path) {
 
-        try (FileSystem zipFileSystem = FileSystems.newFileSystem(path, (ClassLoader) null)) {
+        Map<String, String> zip_properties = new HashMap<>();
+        zip_properties.put("create", "true");
+        zip_properties.put("encoding", "UTF-8");
+
+        try (FileSystem zipFileSystem = FileSystems.newFileSystem(path, zip_properties)) {
 
             final String extensionJSON = Files.readAllLines(zipFileSystem.getPath("extension.json")).get(0);
 

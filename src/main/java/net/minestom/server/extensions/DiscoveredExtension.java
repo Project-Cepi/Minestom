@@ -153,8 +153,8 @@ public final class DiscoveredExtension {
     public static void verifyIntegrity(@NotNull DiscoveredExtension extension) {
         if (extension.name == null) {
             StringBuilder fileList = new StringBuilder();
-            for (URL f : extension.files) {
-                fileList.append(f.toExternalForm()).append(", ");
+            for (URL file : extension.files) {
+                fileList.append(file.toExternalForm()).append(", ");
             }
             LOGGER.error("Extension with no name. (at {}})", fileList);
             LOGGER.error("Extension at ({}) will not be loaded.", fileList);
