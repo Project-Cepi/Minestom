@@ -11,7 +11,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
-public class EventListener<T extends Event> implements ListenerAttach {
+public class EventListener<T extends Event> implements ListenerAttach<T> {
 
     private final Class<T> eventType;
     private final Set<EventHandler> attach = new CopyOnWriteArraySet<>();
@@ -23,22 +23,19 @@ public class EventListener<T extends Event> implements ListenerAttach {
     }
 
     @Override
-    public void attachTo(@NotNull EventHandler... handlers) {
-        final boolean success = this.attach.addAll(Arrays.asList(handlers));
+    public void attachTo(@NotNull EventHandler<T> handler) {
+        final boolean success = this.attach.add(handler);
         if (success) {
-            for (EventHandler handler : handlers) {
-                handler.addEventCallback(eventType, combined::accept);
-            }
+            handler.addEventCallback(eventType, combined::accept);
+
         }
     }
 
     @Override
-    public void detachFrom(@NotNull EventHandler... handlers) {
-        final boolean success = this.attach.removeAll(Arrays.asList(handlers));
+    public void detachFrom(@NotNull EventHandler<T> handler) {
+        final boolean success = this.attach.remove(handler);
         if (success) {
-            for (EventHandler handler : handlers) {
-                handler.removeEventCallback(eventType, combined::accept);
-            }
+            handler.removeEventCallback(eventType, combined::accept);
         }
     }
 

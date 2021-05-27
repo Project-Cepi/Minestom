@@ -8,7 +8,7 @@ import net.minestom.server.data.DataType;
 import net.minestom.server.data.SerializableData;
 import net.minestom.server.entity.EntityType;
 import net.minestom.server.entity.Player;
-import net.minestom.server.event.GlobalEventHandler;
+import net.minestom.server.event.ServerEventHandler;
 import net.minestom.server.exception.ExceptionManager;
 import net.minestom.server.extensions.Extension;
 import net.minestom.server.extensions.ExtensionManager;
@@ -123,7 +123,7 @@ public final class MinecraftServer {
 
     private static ExtensionManager extensionManager;
 
-    private static final GlobalEventHandler GLOBAL_EVENT_HANDLER = new GlobalEventHandler();
+    private static final ServerEventHandler SERVER_EVENT_HANDLER = new ServerEventHandler();
 
     private static UpdateManager updateManager;
     private static MinecraftServer minecraftServer;
@@ -299,8 +299,8 @@ public final class MinecraftServer {
      * @return the global event handler
      */
     @NotNull
-    public static GlobalEventHandler getGlobalEventHandler() {
-        return GLOBAL_EVENT_HANDLER;
+    public static ServerEventHandler getServerEventHandler() {
+        return SERVER_EVENT_HANDLER;
     }
 
     /**

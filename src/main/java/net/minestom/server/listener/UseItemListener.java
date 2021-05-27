@@ -63,15 +63,18 @@ public class UseItemListener {
 
             // Eating code, contains the eating time customisation
             PlayerPreEatEvent playerPreEatEvent = new PlayerPreEatEvent(player, itemStack, hand, player.getDefaultEatingTime());
-            player.callCancellableEvent(PlayerPreEatEvent.class, playerPreEatEvent, () -> player.refreshEating(hand, playerPreEatEvent.getEatingTime()));
+            player.callEvent(PlayerPreEatEvent.class, playerPreEatEvent);
+            if (!playerPreEatEvent.isCancelled()) player.refreshEating(hand, playerPreEatEvent.getEatingTime());
         }
 
         if (itemAnimationType != null) {
             PlayerItemAnimationEvent playerItemAnimationEvent = new PlayerItemAnimationEvent(player, itemAnimationType);
-            player.callCancellableEvent(PlayerItemAnimationEvent.class, playerItemAnimationEvent, () -> {
+            player.callEvent(PlayerItemAnimationEvent.class, playerItemAnimationEvent);
+
+            if (!playerItemAnimationEvent.isCancelled()) {
                 player.refreshActiveHand(true, hand == Player.Hand.OFF, riptideSpinAttack);
                 player.sendPacketToViewers(player.getMetadataPacket());
-            });
+            }
         }
     }
 

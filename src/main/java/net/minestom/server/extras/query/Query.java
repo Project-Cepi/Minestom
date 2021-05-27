@@ -190,11 +190,11 @@ public class Query {
 
                     if (remaining == 0) { // basic
                         BasicQueryEvent event = new BasicQueryEvent(sender, sessionID);
-                        MinecraftServer.getGlobalEventHandler().callCancellableEvent(BasicQueryEvent.class, event,
+                        MinecraftServer.getServerEventHandler().callCancellableEvent(BasicQueryEvent.class, event,
                                 () -> sendResponse(event.getQueryResponse(), sessionID, sender));
                     } else if (remaining == 5) { // full
                         FullQueryEvent event = new FullQueryEvent(sender, sessionID);
-                        MinecraftServer.getGlobalEventHandler().callCancellableEvent(FullQueryEvent.class, event,
+                        MinecraftServer.getServerEventHandler().callCancellableEvent(FullQueryEvent.class, event,
                                 () -> sendResponse(event.getQueryResponse(), sessionID, sender));
                     }
                 }

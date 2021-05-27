@@ -16,7 +16,7 @@ public class StatusRequestPacket implements ClientPreplayPacket {
     public void process(@NotNull PlayerConnection connection) {
         final ServerListPingType pingVersion = ServerListPingType.fromModernProtocolVersion(connection.getProtocolVersion());
         final ServerListPingEvent statusRequestEvent = new ServerListPingEvent(connection, pingVersion);
-        MinecraftServer.getGlobalEventHandler().callCancellableEvent(ServerListPingEvent.class, statusRequestEvent, () -> {
+        MinecraftServer.getServerEventHandler().callCancellableEvent(ServerListPingEvent.class, statusRequestEvent, () -> {
             final ResponsePacket responsePacket = new ResponsePacket();
             responsePacket.jsonResponse = pingVersion.getPingResponse(statusRequestEvent.getResponseData());
 

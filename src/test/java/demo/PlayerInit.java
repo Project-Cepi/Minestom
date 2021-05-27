@@ -12,7 +12,7 @@ import net.minestom.server.entity.ItemEntity;
 import net.minestom.server.entity.Player;
 import net.minestom.server.entity.damage.DamageType;
 import net.minestom.server.event.Event;
-import net.minestom.server.event.GlobalEventHandler;
+import net.minestom.server.event.ServerEventHandler;
 import net.minestom.server.event.entity.EntityAttackEvent;
 import net.minestom.server.event.item.ItemDropEvent;
 import net.minestom.server.event.item.PickupItemEvent;
@@ -135,7 +135,7 @@ public class PlayerInit {
 
         // EVENT REGISTERING
 
-        GlobalEventHandler globalEventHandler = MinecraftServer.getGlobalEventHandler();
+        ServerEventHandler globalEventHandler = MinecraftServer.getServerEventHandler();
 
         connectionManager.addPlayerInitialization(player -> {
 

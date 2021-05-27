@@ -14,6 +14,7 @@ import net.minestom.server.entity.Player;
 import net.minestom.server.entity.pathfinding.PFInstanceSpace;
 import net.minestom.server.event.Event;
 import net.minestom.server.event.EventCallback;
+import net.minestom.server.event.InstanceEvent;
 import net.minestom.server.event.handler.EventHandler;
 import net.minestom.server.event.instance.AddEntityToInstanceEvent;
 import net.minestom.server.event.instance.InstanceTickEvent;
@@ -56,7 +57,7 @@ import java.util.function.Consumer;
  * you need to be sure to signal the {@link UpdateManager} of the changes using
  * {@link UpdateManager#signalChunkLoad(Chunk)} and {@link UpdateManager#signalChunkUnload(Chunk)}.
  */
-public abstract class Instance implements BlockModifier, Tickable, EventHandler, DataContainer, PacketGroupingAudience {
+public abstract class Instance implements BlockModifier, Tickable, EventHandler<InstanceEvent>, DataContainer, PacketGroupingAudience {
 
     protected static final BlockManager BLOCK_MANAGER = MinecraftServer.getBlockManager();
     protected static final UpdateManager UPDATE_MANAGER = MinecraftServer.getUpdateManager();
@@ -79,7 +80,7 @@ public abstract class Instance implements BlockModifier, Tickable, EventHandler,
     // Field for tick events
     private long lastTickAge = System.currentTimeMillis();
 
-    private final Map<Class<? extends Event>, Collection<EventCallback>> eventCallbacks = new ConcurrentHashMap<>();
+    private final Map<Class<InstanceEvent>, Collection<EventCallback<InstanceEvent>>> eventCallbacks = new ConcurrentHashMap<>();
     private final Map<String, Collection<EventCallback<?>>> extensionCallbacks = new ConcurrentHashMap<>();
 
     // Entities present in this instance
@@ -835,7 +836,7 @@ public abstract class Instance implements BlockModifier, Tickable, EventHandler,
 
     @NotNull
     @Override
-    public Map<Class<? extends Event>, Collection<EventCallback>> getEventCallbacksMap() {
+    public Map<Class<InstanceEvent>, Collection<EventCallback<InstanceEvent>>> getEventCallbacksMap() {
         return eventCallbacks;
     }
 

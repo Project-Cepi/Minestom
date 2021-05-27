@@ -121,7 +121,7 @@ public class OpenToLAN {
         if (MinecraftServer.getNettyServer().getPort() != 0) {
             if (packet == null || eventCooldown.isReady(System.currentTimeMillis())) {
                 final ServerListPingEvent event = new ServerListPingEvent(OPEN_TO_LAN);
-                MinecraftServer.getGlobalEventHandler().callEvent(ServerListPingEvent.class, event);
+                MinecraftServer.getServerEventHandler().callEvent(ServerListPingEvent.class, event);
 
                 final byte[] data = OPEN_TO_LAN.getPingResponse(event.getResponseData()).getBytes(StandardCharsets.UTF_8);
                 packet = new DatagramPacket(data, data.length, PING_ADDRESS);

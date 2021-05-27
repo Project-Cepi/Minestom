@@ -8,18 +8,15 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-/**
- * Object containing all the global event listeners.
- */
-public final class GlobalEventHandler implements EventHandler {
+public final class ServerEventHandler implements EventHandler<ServerEvent> {
 
     // Events
-    private final Map<Class<? extends Event>, Collection<EventCallback>> eventCallbacks = new ConcurrentHashMap<>();
+    private final Map<Class<ServerEvent>, Collection<EventCallback<ServerEvent>>> eventCallbacks = new ConcurrentHashMap<>();
     private final Map<String, Collection<EventCallback<?>>> extensionCallbacks = new ConcurrentHashMap<>();
 
     @NotNull
     @Override
-    public Map<Class<? extends Event>, Collection<EventCallback>> getEventCallbacksMap() {
+    public Map<Class<ServerEvent>, Collection<EventCallback<ServerEvent>>> getEventCallbacksMap() {
         return eventCallbacks;
     }
 

@@ -1,14 +1,10 @@
 package net.minestom.server.event.handler;
 
 import net.minestom.server.MinecraftServer;
-import net.minestom.server.entity.Entity;
-import net.minestom.server.event.CancellableEvent;
 import net.minestom.server.event.Event;
 import net.minestom.server.event.EventCallback;
-import net.minestom.server.event.GlobalEventHandler;
 import net.minestom.server.extensions.IExtensionObserver;
 import net.minestom.server.extras.selfmodification.MinestomRootClassLoader;
-import net.minestom.server.instance.Instance;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 
@@ -20,7 +16,7 @@ import java.util.stream.Stream;
 /**
  * Represents an element which can have {@link Event} listeners assigned to it.
  */
-public interface EventHandler extends IExtensionObserver {
+public interface EventHandler<T extends Event> extends IExtensionObserver {
 
     /**
      * Gets a {@link Map} containing all the listeners assigned to a specific {@link Event} type.
@@ -28,7 +24,7 @@ public interface EventHandler extends IExtensionObserver {
      * @return a {@link Map} with all the listeners
      */
     @NotNull
-    Map<Class<? extends Event>, Collection<EventCallback>> getEventCallbacksMap();
+    Map<Class<T>, Collection<EventCallback<T>>> getEventCallbacksMap();
 
     /**
      * Gets a {@link Collection} containing all the listeners assigned to a specific extension (represented by its name).
@@ -48,14 +44,14 @@ public interface EventHandler extends IExtensionObserver {
      * @return true if the callback collection changed as a result of the call
      */
     @ApiStatus.Internal
-    default <E extends Event> boolean addEventCallback(@NotNull Class<E> eventClass, @NotNull EventCallback<E> eventCallback) {
+    default <E extends T> boolean addEventCallback(@NotNull Class<E> eventClass, @NotNull EventCallback<E> eventCallback) {
         String extensionSource = MinestomRootClassLoader.findExtensionObjectOwner(eventCallback);
-        if(extensionSource != null) {
+        if (extensionSource != null) {
             MinecraftServer.getExtensionManager().getExtension(extensionSource).observe(this);
             getExtensionCallbacks(extensionSource).add(eventCallback);
         }
 
-        Collection<EventCallback> callbacks = getEventCallbacks(eventClass);
+        Collection<EventCallback<E>> callbacks = getEventCallbacks(eventClass);
         return callbacks.add(eventCallback);
     }
 
@@ -68,8 +64,8 @@ public interface EventHandler extends IExtensionObserver {
      * @return true if the callback was removed as a result of this call
      */
     @ApiStatus.Internal
-    default <E extends Event> boolean removeEventCallback(@NotNull Class<E> eventClass, @NotNull EventCallback<E> eventCallback) {
-        Collection<EventCallback> callbacks = getEventCallbacks(eventClass);
+    default <E extends T> boolean removeEventCallback(@NotNull Class<E> eventClass, @NotNull EventCallback<E> eventCallback) {
+        Collection<EventCallback<E>> callbacks = getEventCallbacks(eventClass);
         String extensionSource = MinestomRootClassLoader.findExtensionObjectOwner(eventCallback);
         if(extensionSource != null) {
             getExtensionCallbacks(extensionSource).remove(eventCallback);
@@ -86,8 +82,8 @@ public interface EventHandler extends IExtensionObserver {
      * @return all event callbacks for the specified type {@code eventClass}
      */
     @NotNull
-    default <E extends Event> Collection<EventCallback> getEventCallbacks(@NotNull Class<E> eventClass) {
-        return getEventCallbacksMap().computeIfAbsent(eventClass, clazz -> new CopyOnWriteArraySet<>());
+    default <E extends T> Collection<EventCallback<E>> getEventCallbacks(@NotNull Class<E> eventClass) {
+        return getEventCallbacksMap().computeIfAbsent((Class) eventClass, clazz -> new CopyOnWriteArraySet<>());
     }
 
     /**
@@ -96,7 +92,7 @@ public interface EventHandler extends IExtensionObserver {
      * @return a {@link Stream} containing all the callbacks
      */
     @NotNull
-    default Stream<EventCallback> getEventCallbacks() {
+    default Stream<EventCallback<T>> getEventCallbacks() {
         return getEventCallbacksMap().values().stream().flatMap(Collection::stream);
     }
 
@@ -109,49 +105,14 @@ public interface EventHandler extends IExtensionObserver {
      * @param event      the event object
      * @param <E>        the event type
      */
-    default <E extends Event> void callEvent(@NotNull Class<E> eventClass, @NotNull E event) {
+    default <E extends T> void callEvent(@NotNull Class<E> eventClass, @NotNull E event) {
 
         try {
-
-            // Global listeners
-            if (!(this instanceof GlobalEventHandler)) {
-                final GlobalEventHandler globalEventHandler = MinecraftServer.getGlobalEventHandler();
-                runEvent(globalEventHandler.getEventCallbacks(eventClass), event);
-            }
-
             // Local listeners
-            final Collection<EventCallback> eventCallbacks = getEventCallbacks(eventClass);
+            final Collection<EventCallback<E>> eventCallbacks = getEventCallbacks(eventClass);
             runEvent(eventCallbacks, event);
-
-            // Call the same event for the current entity instance
-            if (this instanceof Entity) {
-                final Instance instance = ((Entity) this).getInstance();
-                if (instance != null) {
-                    runEvent(instance.getEventCallbacks(eventClass), event);
-                }
-            }
         } catch (Exception exception) {
             MinecraftServer.getExceptionManager().handleException(exception);
-        }
-    }
-
-    /**
-     * Calls a {@link CancellableEvent} and execute {@code successCallback} if the {@link Event} is not cancelled.
-     * <p>
-     * Does call {@link #callEvent(Class, Event)} internally.
-     *
-     * @param eventClass      the event class
-     * @param event           the event object
-     * @param successCallback the callback called when the event is not cancelled
-     * @param <E>             the event type
-     * @see #callEvent(Class, Event)
-     */
-    default <E extends Event & CancellableEvent> void callCancellableEvent(@NotNull Class<E> eventClass,
-                                                                           @NotNull E event,
-                                                                           @NotNull Runnable successCallback) {
-        callEvent(eventClass, event);
-        if (!event.isCancelled()) {
-            successCallback.run();
         }
     }
 
@@ -165,7 +126,7 @@ public interface EventHandler extends IExtensionObserver {
 
             // try to remove this callback from all callback collections
             //  we do this because we do not have information about the event class at this point
-            for (Collection<EventCallback> eventCallbacks : getEventCallbacksMap().values()) {
+            for (Collection<EventCallback<T>> eventCallbacks : getEventCallbacksMap().values()) {
                 eventCallbacks.remove(callback);
             }
         }
@@ -173,7 +134,7 @@ public interface EventHandler extends IExtensionObserver {
         extensionCallbacks.clear();
     }
 
-    private <E extends Event> void runEvent(@NotNull Collection<EventCallback> eventCallbacks, @NotNull E event) {
+    private <E extends Event> void runEvent(@NotNull Collection<EventCallback<E>> eventCallbacks, @NotNull E event) {
         for (EventCallback<E> eventCallback : eventCallbacks) {
             eventCallback.run(event);
         }

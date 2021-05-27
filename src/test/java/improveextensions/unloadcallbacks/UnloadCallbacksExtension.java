@@ -5,7 +5,7 @@ import net.minestom.server.entity.EntityCreature;
 import net.minestom.server.entity.EntityType;
 import net.minestom.server.event.Event;
 import net.minestom.server.event.EventCallback;
-import net.minestom.server.event.GlobalEventHandler;
+import net.minestom.server.event.ServerEventHandler;
 import net.minestom.server.event.entity.EntityTickEvent;
 import net.minestom.server.event.instance.InstanceTickEvent;
 import net.minestom.server.extensions.Extension;
@@ -34,7 +34,7 @@ public class UnloadCallbacksExtension extends Extension {
 
     @Override
     public void initialize() {
-        GlobalEventHandler globalEvents = MinecraftServer.getGlobalEventHandler();
+        ServerEventHandler globalEvents = MinecraftServer.getServerEventHandler();
         // this callback will be automatically removed when unloading the extension
         globalEvents.addEventCallback(InstanceTickEvent.class, callback);
         // this one too

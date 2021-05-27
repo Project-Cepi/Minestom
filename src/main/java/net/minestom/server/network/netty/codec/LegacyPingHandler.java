@@ -143,7 +143,7 @@ public class LegacyPingHandler extends ChannelInboundHandlerAdapter {
      */
     private static boolean trySendResponse(@NotNull ServerListPingType version, @NotNull ChannelHandlerContext ctx) {
         final ServerListPingEvent event = new ServerListPingEvent(version);
-        MinecraftServer.getGlobalEventHandler().callEvent(ServerListPingEvent.class, event);
+        MinecraftServer.getServerEventHandler().callEvent(ServerListPingEvent.class, event);
 
         if (event.isCancelled()) {
             return true;
