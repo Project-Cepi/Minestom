@@ -28,4 +28,8 @@ public class Event {
     public static <T extends InventoryEvent> EventListener.Builder<T> inventory(Class<T> eventType) {
         return new EventListener.Builder<>(eventType);
     }
+
+    public static <T extends Event> EventListener.Builder<T> any(Class<T> eventType) {
+        return new EventListener.Builder<>(eventType);
+    }
 }

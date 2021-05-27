@@ -6,6 +6,7 @@ import net.minestom.server.attribute.Attribute;
 import net.minestom.server.entity.Player;
 import net.minestom.server.entity.pathfinding.NavigableEntity;
 import net.minestom.server.entity.pathfinding.Navigator;
+import net.minestom.server.event.Event;
 import net.minestom.server.event.player.PlayerSpawnEvent;
 import net.minestom.server.instance.Instance;
 import net.minestom.server.network.ConnectionManager;
@@ -52,12 +53,11 @@ public class FakePlayer extends Player implements NavigableEntity {
         this.fakePlayerController = new FakePlayerController(this);
 
         if (spawnCallback != null) {
-            addEventCallback(PlayerSpawnEvent.class,
-                    event -> {
-                        if (event.isFirstSpawn()) {
-                            spawnCallback.accept(this);
-                        }
-                    });
+            Event.player(PlayerSpawnEvent.class)
+                    .filter(PlayerSpawnEvent::isFirstSpawn)
+                    .handler(event -> spawnCallback.accept(this))
+                    .build()
+                    .attachTo(this);
         }
 
         CONNECTION_MANAGER.startPlayState(this, option.isRegistered());
