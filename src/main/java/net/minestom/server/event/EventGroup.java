@@ -13,14 +13,14 @@ public class EventGroup<T extends Event> implements ListenerAttach<T> {
     }
 
     @Override
-    public void attachTo(@NotNull EventHandler<T> handler) {
+    public void attachTo(@NotNull EventHandler<? super T> handler) {
         for (EventListener<T> listener : listeners) {
             listener.attachTo(handler);
         }
     }
 
     @Override
-    public void detachFrom(@NotNull EventHandler<T> handler) {
+    public void detachFrom(@NotNull EventHandler<? super T> handler) {
         for (EventListener<T> listener : listeners) {
             listener.detachFrom(handler);
         }

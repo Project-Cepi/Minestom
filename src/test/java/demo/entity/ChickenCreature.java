@@ -7,6 +7,7 @@ import net.minestom.server.entity.EntityType;
 import net.minestom.server.entity.LivingEntity;
 import net.minestom.server.entity.ai.goal.RandomStrollGoal;
 import net.minestom.server.entity.damage.DamageType;
+import net.minestom.server.event.Event;
 import net.minestom.server.event.entity.EntityAttackEvent;
 import net.minestom.server.utils.Vector;
 
@@ -40,14 +41,14 @@ public class ChickenCreature extends EntityCreature {
 
         getAttribute(Attribute.MOVEMENT_SPEED).setBaseValue(0.1f);
 
-        addEventCallback(EntityAttackEvent.class, event -> {
+        Event.entity(EntityAttackEvent.class).handler(event -> {
             //System.out.println("CALL ATTACK");
             LivingEntity entity = (LivingEntity) event.getTarget();
             Vector velocity = getPosition().clone().getDirection().multiply(6);
             velocity.setY(4f);
             entity.damage(DamageType.fromEntity(this), -1);
             entity.setVelocity(velocity);
-        });
+        }).build().attachTo(this);
 
     }
 

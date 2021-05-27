@@ -23,7 +23,7 @@ public class EventListener<T extends Event> implements ListenerAttach<T> {
     }
 
     @Override
-    public void attachTo(@NotNull EventHandler<T> handler) {
+    public void attachTo(@NotNull EventHandler<? super T> handler) {
         final boolean success = this.attach.add(handler);
         if (success) {
             handler.addEventCallback(eventType, combined::accept);
@@ -32,7 +32,7 @@ public class EventListener<T extends Event> implements ListenerAttach<T> {
     }
 
     @Override
-    public void detachFrom(@NotNull EventHandler<T> handler) {
+    public void detachFrom(@NotNull EventHandler<? super T> handler) {
         final boolean success = this.attach.remove(handler);
         if (success) {
             handler.removeEventCallback(eventType, combined::accept);

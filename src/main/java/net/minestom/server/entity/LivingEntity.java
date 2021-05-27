@@ -232,7 +232,9 @@ public class LivingEntity extends Entity implements EquipmentHandler {
                         if (itemEntity.shouldRemove() || itemEntity.isRemoveScheduled())
                             continue;
                         PickupItemEvent pickupItemEvent = new PickupItemEvent(this, itemEntity);
-                        callCancellableEvent(PickupItemEvent.class, pickupItemEvent, () -> {
+                        callEvent(PickupItemEvent.class, pickupItemEvent);
+
+                        if (!pickupItemEvent.isCancelled()) {
                             final ItemStack item = itemEntity.getItemStack();
 
                             CollectItemPacket collectItemPacket = new CollectItemPacket();
@@ -241,7 +243,7 @@ public class LivingEntity extends Entity implements EquipmentHandler {
                             collectItemPacket.pickupItemCount = item.getAmount();
                             sendPacketToViewersAndSelf(collectItemPacket);
                             entity.remove();
-                        });
+                        }
                     }
                 }
             }
@@ -329,11 +331,12 @@ public class LivingEntity extends Entity implements EquipmentHandler {
 
         // Do not start fire event if the fire needs to be removed (< 0 duration)
         if (duration > 0) {
-            callCancellableEvent(EntityFireEvent.class, entityFireEvent, () -> {
+            callEvent(EntityFireEvent.class, entityFireEvent);
+            if (!entityFireEvent.isCancelled()) {
                 final long fireTime = entityFireEvent.getFireTime(TimeUnit.MILLISECOND);
                 setOnFire(true);
                 fireExtinguishTime = System.currentTimeMillis() + fireTime;
-            });
+            }
         } else {
             fireExtinguishTime = System.currentTimeMillis();
         }
@@ -354,7 +357,8 @@ public class LivingEntity extends Entity implements EquipmentHandler {
         }
 
         EntityDamageEvent entityDamageEvent = new EntityDamageEvent(this, type, value);
-        callCancellableEvent(EntityDamageEvent.class, entityDamageEvent, () -> {
+        callEvent(EntityDamageEvent.class, entityDamageEvent);
+        if (!entityDamageEvent.isCancelled()) {
             // Set the last damage type since the event is not cancelled
             this.lastDamageSource = entityDamageEvent.getDamageType();
 
@@ -400,7 +404,7 @@ public class LivingEntity extends Entity implements EquipmentHandler {
                                 1.0f, 1.0f);
                 sendPacketToViewersAndSelf(damageSoundPacket);
             }
-        });
+        }
 
         return !entityDamageEvent.isCancelled();
     }

@@ -16,7 +16,7 @@ import net.minestom.server.collision.CollisionUtils;
 import net.minestom.server.data.Data;
 import net.minestom.server.data.DataContainer;
 import net.minestom.server.entity.metadata.EntityMeta;
-import net.minestom.server.event.Event;
+import net.minestom.server.event.EntityEvent;
 import net.minestom.server.event.EventCallback;
 import net.minestom.server.event.entity.*;
 import net.minestom.server.event.handler.EventHandler;
@@ -61,7 +61,7 @@ import java.util.function.UnaryOperator;
  * <p>
  * To create your own entity you probably want to extends {@link LivingEntity} or {@link EntityCreature} instead.
  */
-public class Entity implements Viewable, Tickable, EventHandler, DataContainer, PermissionHandler, HoverEventSource<ShowEntity> {
+public class Entity implements Viewable, Tickable, EventHandler<EntityEvent>, DataContainer, PermissionHandler, HoverEventSource<ShowEntity> {
 
     private static final Map<Integer, Entity> ENTITY_BY_ID = new ConcurrentHashMap<>();
     private static final Map<UUID, Entity> ENTITY_BY_UUID = new ConcurrentHashMap<>();
@@ -116,7 +116,7 @@ public class Entity implements Viewable, Tickable, EventHandler, DataContainer, 
     private long lastAbsoluteSynchronizationTime;
 
     // Events
-    private final Map<Class<? extends Event>, Collection<EventCallback>> eventCallbacks = new ConcurrentHashMap<>();
+    private final Map<Class<EntityEvent>, Collection<EventCallback<EntityEvent>>> eventCallbacks = new ConcurrentHashMap<>();
     private final Map<String, Collection<EventCallback<?>>> extensionCallbacks = new ConcurrentHashMap<>();
 
     protected Metadata metadata = new Metadata(this);
@@ -773,7 +773,7 @@ public class Entity implements Viewable, Tickable, EventHandler, DataContainer, 
 
     @NotNull
     @Override
-    public Map<Class<? extends Event>, Collection<EventCallback>> getEventCallbacksMap() {
+    public Map<Class<EntityEvent>, Collection<EventCallback<EntityEvent>>> getEventCallbacksMap() {
         return eventCallbacks;
     }
 
@@ -950,10 +950,11 @@ public class Entity implements Viewable, Tickable, EventHandler, DataContainer, 
      */
     public void setVelocity(@NotNull Vector velocity) {
         EntityVelocityEvent entityVelocityEvent = new EntityVelocityEvent(this, velocity);
-        callCancellableEvent(EntityVelocityEvent.class, entityVelocityEvent, () -> {
+        callEvent(EntityVelocityEvent.class, entityVelocityEvent);
+        if (!entityVelocityEvent.isCancelled()) {
             this.velocity.copy(entityVelocityEvent.getVelocity());
             sendPacketToViewersAndSelf(getVelocityPacket());
-        });
+        }
     }
 
     /**

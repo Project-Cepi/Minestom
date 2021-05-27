@@ -4,7 +4,7 @@ import net.minestom.server.event.handler.EventHandler;
 import org.jetbrains.annotations.NotNull;
 
 public interface ListenerAttach<T extends Event> {
-    void attachTo(@NotNull EventHandler<T> handler);
+    void attachTo(@NotNull EventHandler<? super T> handler);
 
-    void detachFrom(@NotNull EventHandler<T> handler);
+    void detachFrom(@NotNull EventHandler<? super T> handler);
 }
