@@ -841,7 +841,7 @@ public abstract class Instance implements BlockModifier, Tickable, EventHandler,
 
     @NotNull
     @Override
-    public Collection<EventCallback<?>> getExtensionCallbacks(String extension) {
+    public Collection<EventCallback<?>> getExtensionCallbacks(@NotNull String extension) {
         return extensionCallbacks.computeIfAbsent(extension, e -> new CopyOnWriteArrayList<>());
     }
 

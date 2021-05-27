@@ -25,7 +25,7 @@ public final class GlobalEventHandler implements EventHandler {
 
     @NotNull
     @Override
-    public Collection<EventCallback<?>> getExtensionCallbacks(String extension) {
+    public Collection<EventCallback<?>> getExtensionCallbacks(@NotNull String extension) {
         return extensionCallbacks.computeIfAbsent(extension, e -> new CopyOnWriteArrayList<>());
     }
 }

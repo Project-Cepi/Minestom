@@ -256,7 +256,7 @@ public final class SchedulerManager implements IExtensionObserver {
     }
 
     @Override
-    public void onExtensionUnload(String extensionName) {
+    public void onExtensionUnload(@NotNull String extensionName) {
         removeExtensionTasksOnUnload(extensionName);
     }
 }

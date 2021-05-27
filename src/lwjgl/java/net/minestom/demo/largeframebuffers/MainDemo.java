@@ -2,6 +2,7 @@ package net.minestom.demo.largeframebuffers;
 
 import net.minestom.server.MinecraftServer;
 import net.minestom.server.entity.GameMode;
+import net.minestom.server.event.Event;
 import net.minestom.server.event.player.PlayerLoginEvent;
 import net.minestom.server.event.player.PlayerSpawnEvent;
 import net.minestom.server.instance.*;
@@ -31,19 +32,27 @@ public class MainDemo {
 
         // Add event listeners
         ConnectionManager connectionManager = MinecraftServer.getConnectionManager();
-        connectionManager.addPlayerInitialization(player -> {
-            // Set the spawning instance
-            player.addEventCallback(PlayerLoginEvent.class, event -> {
-                event.setSpawningInstance(instanceContainer);
-                player.setRespawnPoint(new Position(0, 45, 0));
-            });
 
-            // Teleport the player at spawn
-            player.addEventCallback(PlayerSpawnEvent.class, event -> {
-                player.teleport(new Position(0, 45, 0));
-                player.setGameMode(GameMode.CREATIVE);
-            });
-        });
+        // Set the spawning instance
+        var playerLoginEventListener = Event.player(PlayerLoginEvent.class)
+                .handler(event -> {
+                    event.setSpawningInstance(instanceContainer);
+                    event.getPlayer().setRespawnPoint(new Position(0, 45, 0));
+                }).build();
+
+        // Teleport the player at spawn
+        var playerSpawnEventListener = Event.player(PlayerSpawnEvent.class)
+                .handler(event -> {
+
+                    var player = event.getPlayer();
+
+                    player.teleport(new Position(0, 45, 0));
+                    player.setGameMode(GameMode.CREATIVE);
+                }).build();
+
+        var playerEventGroup = Event.group(playerLoginEventListener, playerSpawnEventListener);
+
+        connectionManager.addPlayerInitialization(playerEventGroup::attachTo);
 
         // Start the server
         minecraftServer.start("localhost", 25565);

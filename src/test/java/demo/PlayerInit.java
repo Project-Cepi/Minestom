@@ -143,10 +143,8 @@ public class PlayerInit {
                     .filter(playerChatEvent -> player.isCreative())
                     .handler(playerChatEvent -> Audiences.players().sendMessage(Component.text("Listener is working!")))
                     .build();
-            //listener.attachTo(player);
 
-            var group = Event.group(listener);
-            group.attachTo(player);
+            listener.attachTo(player);
 
         });
 

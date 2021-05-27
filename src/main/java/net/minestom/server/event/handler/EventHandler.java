@@ -9,6 +9,7 @@ import net.minestom.server.event.GlobalEventHandler;
 import net.minestom.server.extensions.IExtensionObserver;
 import net.minestom.server.extras.selfmodification.MinestomRootClassLoader;
 import net.minestom.server.instance.Instance;
+import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
@@ -36,7 +37,7 @@ public interface EventHandler extends IExtensionObserver {
      * @return a {@link Collection} with all the listeners
      */
     @NotNull
-    Collection<EventCallback<?>> getExtensionCallbacks(String extension);
+    Collection<EventCallback<?>> getExtensionCallbacks(@NotNull String extension);
 
     /**
      * Adds a new event callback for the specified type {@code eventClass}.
@@ -46,6 +47,7 @@ public interface EventHandler extends IExtensionObserver {
      * @param <E>           the event type
      * @return true if the callback collection changed as a result of the call
      */
+    @ApiStatus.Internal
     default <E extends Event> boolean addEventCallback(@NotNull Class<E> eventClass, @NotNull EventCallback<E> eventCallback) {
         String extensionSource = MinestomRootClassLoader.findExtensionObjectOwner(eventCallback);
         if(extensionSource != null) {
@@ -58,13 +60,14 @@ public interface EventHandler extends IExtensionObserver {
     }
 
     /**
-     * Removes an event callback.
+     * Removes an event callback from the specified type {@code eventClass}.
      *
      * @param eventClass    the event class
      * @param eventCallback the event callback
      * @param <E>           the event type
      * @return true if the callback was removed as a result of this call
      */
+    @ApiStatus.Internal
     default <E extends Event> boolean removeEventCallback(@NotNull Class<E> eventClass, @NotNull EventCallback<E> eventCallback) {
         Collection<EventCallback> callbacks = getEventCallbacks(eventClass);
         String extensionSource = MinestomRootClassLoader.findExtensionObjectOwner(eventCallback);
@@ -151,13 +154,13 @@ public interface EventHandler extends IExtensionObserver {
      * Remove all event callbacks owned by the given extension
      * @param extension the extension to remove callbacks from
      */
-    default void removeCallbacksOwnedByExtension(String extension) {
+    default void removeCallbacksOwnedByExtension(@NotNull String extension) {
         Collection<EventCallback<?>> extensionCallbacks = getExtensionCallbacks(extension);
-        for(EventCallback<?> callback : extensionCallbacks) {
+        for (EventCallback<?> callback : extensionCallbacks) {
 
             // try to remove this callback from all callback collections
             //  we do this because we do not have information about the event class at this point
-            for(Collection<EventCallback> eventCallbacks : getEventCallbacksMap().values()) {
+            for (Collection<EventCallback> eventCallbacks : getEventCallbacksMap().values()) {
                 eventCallbacks.remove(callback);
             }
         }
@@ -172,7 +175,7 @@ public interface EventHandler extends IExtensionObserver {
     }
 
     @Override
-    default void onExtensionUnload(String extensionName) {
+    default void onExtensionUnload(@NotNull String extensionName) {
         removeCallbacksOwnedByExtension(extensionName);
     }
 

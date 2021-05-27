@@ -20,4 +20,12 @@ public class Event {
     public static <T extends PlayerEvent> EventListener.Builder<T> player(Class<T> eventType) {
         return new EventListener.Builder<>(eventType);
     }
+
+    public static <T extends InstanceEvent> EventListener.Builder<T> instance(Class<T> eventType) {
+        return new EventListener.Builder<>(eventType);
+    }
+
+    public static <T extends InventoryEvent> EventListener.Builder<T> inventory(Class<T> eventType) {
+        return new EventListener.Builder<>(eventType);
+    }
 }
