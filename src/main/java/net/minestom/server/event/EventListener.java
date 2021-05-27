@@ -4,6 +4,7 @@ import net.minestom.server.event.handler.EventHandler;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
@@ -22,18 +23,22 @@ public class EventListener<T extends Event> implements ListenerAttach {
     }
 
     @Override
-    public void attachTo(@NotNull EventHandler handler) {
-        final boolean success = this.attach.add(handler);
+    public void attachTo(@NotNull EventHandler... handlers) {
+        final boolean success = this.attach.addAll(Arrays.asList(handlers));
         if (success) {
-            handler.addEventCallback(eventType, combined::accept);
+            for (EventHandler handler : handlers) {
+                handler.addEventCallback(eventType, combined::accept);
+            }
         }
     }
 
     @Override
-    public void detachFrom(@NotNull EventHandler handler) {
-        final boolean success = this.attach.remove(handler);
+    public void detachFrom(@NotNull EventHandler... handlers) {
+        final boolean success = this.attach.removeAll(Arrays.asList(handlers));
         if (success) {
-            handler.removeEventCallback(eventType, combined::accept);
+            for (EventHandler handler : handlers) {
+                handler.removeEventCallback(eventType, combined::accept);
+            }
         }
     }
 

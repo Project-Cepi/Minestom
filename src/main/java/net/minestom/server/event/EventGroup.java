@@ -12,16 +12,16 @@ public class EventGroup implements ListenerAttach {
     }
 
     @Override
-    public void attachTo(@NotNull EventHandler handler) {
+    public void attachTo(@NotNull EventHandler... handlers) {
         for (EventListener<?> listener : listeners) {
-            listener.attachTo(handler);
+            listener.attachTo(handlers);
         }
     }
 
     @Override
-    public void detachFrom(@NotNull EventHandler handler) {
+    public void detachFrom(@NotNull EventHandler... handlers) {
         for (EventListener<?> listener : listeners) {
-            listener.detachFrom(handler);
+            listener.detachFrom(handlers);
         }
     }
 }
