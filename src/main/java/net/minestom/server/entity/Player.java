@@ -30,6 +30,8 @@ import net.minestom.server.effects.Effects;
 import net.minestom.server.entity.damage.DamageType;
 import net.minestom.server.entity.fakeplayer.FakePlayer;
 import net.minestom.server.entity.vehicle.PlayerVehicleInformation;
+import net.minestom.server.event.PlayerEvent;
+import net.minestom.server.event.handler.EventHandler;
 import net.minestom.server.event.inventory.InventoryOpenEvent;
 import net.minestom.server.event.item.ItemDropEvent;
 import net.minestom.server.event.item.ItemUpdateStateEvent;
@@ -93,7 +95,7 @@ import java.util.function.UnaryOperator;
  * <p>
  * You can easily create your own implementation of this and use it with {@link ConnectionManager#setPlayerProvider(PlayerProvider)}.
  */
-public class Player extends LivingEntity implements CommandSender, Localizable, HoverEventSource<ShowEntity>, Identified, NamedAndIdentified {
+public class Player extends LivingEntity implements CommandSender, EventHandler<PlayerEvent>, Localizable, HoverEventSource<ShowEntity>, Identified, NamedAndIdentified {
 
     private long lastKeepAlive;
     private boolean answerKeepAlive;
@@ -295,7 +297,7 @@ public class Player extends LivingEntity implements CommandSender, Localizable, 
         {
             TagsPacket tags = TagsPacket.getRequiredTagsPacket();
 
-            UpdateTagListEvent event = new UpdateTagListEvent(tags);
+            UpdateTagListEvent event = new UpdateTagListEvent(this, tags);
             callEvent(UpdateTagListEvent.class, event);
 
             this.playerConnection.sendPacket(tags);
@@ -387,7 +389,7 @@ public class Player extends LivingEntity implements CommandSender, Localizable, 
                     if (expandedBoundingBox.intersect(itemBoundingBox)) {
                         if (experienceOrb.shouldRemove() || experienceOrb.isRemoveScheduled())
                             continue;
-                        PickupExperienceEvent pickupExperienceEvent = new PickupExperienceEvent(experienceOrb);
+                        PickupExperienceEvent pickupExperienceEvent = new PickupExperienceEvent(this, experienceOrb);
                         callCancellableEvent(PickupExperienceEvent.class, pickupExperienceEvent, () -> {
                             short experienceCount = pickupExperienceEvent.getExperienceCount(); // TODO give to player
                             entity.remove();

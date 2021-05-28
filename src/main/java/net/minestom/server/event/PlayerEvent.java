@@ -3,11 +3,12 @@ package net.minestom.server.event;
 import net.minestom.server.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-public class PlayerEvent extends Event {
+public class PlayerEvent extends EntityEvent {
 
     protected final Player player;
 
     public PlayerEvent(@NotNull Player player) {
+        super(player);
         this.player = player;
     }
 

@@ -2,25 +2,19 @@ package net.minestom.server.event.item;
 
 import net.minestom.server.entity.Entity;
 import net.minestom.server.entity.EquipmentSlot;
-import net.minestom.server.event.Event;
+import net.minestom.server.event.EntityEvent;
 import net.minestom.server.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
-public class EntityEquipEvent extends Event {
+public class EntityEquipEvent extends EntityEvent {
 
-    private final Entity entity;
     private ItemStack equippedItem;
     private final EquipmentSlot slot;
 
     public EntityEquipEvent(@NotNull Entity entity, @NotNull ItemStack equippedItem, @NotNull EquipmentSlot slot) {
-        this.entity = entity;
+        super(entity);
         this.equippedItem = equippedItem;
         this.slot = slot;
-    }
-
-    @NotNull
-    public Entity getEntity() {
-        return entity;
     }
 
     @NotNull

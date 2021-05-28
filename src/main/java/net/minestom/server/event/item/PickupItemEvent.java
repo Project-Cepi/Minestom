@@ -3,25 +3,21 @@ package net.minestom.server.event.item;
 import net.minestom.server.entity.ItemEntity;
 import net.minestom.server.entity.LivingEntity;
 import net.minestom.server.event.CancellableEvent;
+import net.minestom.server.event.EntityEvent;
 import net.minestom.server.event.Event;
 import net.minestom.server.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
-public class PickupItemEvent extends Event implements CancellableEvent {
+public class PickupItemEvent extends EntityEvent implements CancellableEvent {
 
-    private final LivingEntity livingEntity;
     private final ItemEntity itemEntity;
 
     private boolean cancelled;
 
+    // TODO living entity event?
     public PickupItemEvent(@NotNull LivingEntity livingEntity, @NotNull ItemEntity itemEntity) {
-        this.livingEntity = livingEntity;
+        super(livingEntity);
         this.itemEntity = itemEntity;
-    }
-
-    @NotNull
-    public LivingEntity getLivingEntity() {
-        return livingEntity;
     }
 
     @NotNull

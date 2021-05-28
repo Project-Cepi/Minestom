@@ -1,18 +1,21 @@
 package net.minestom.server.event.item;
 
 import net.minestom.server.entity.ExperienceOrb;
+import net.minestom.server.entity.Player;
 import net.minestom.server.event.CancellableEvent;
 import net.minestom.server.event.Event;
+import net.minestom.server.event.PlayerEvent;
 import org.jetbrains.annotations.NotNull;
 
-public class PickupExperienceEvent extends Event implements CancellableEvent {
+public class PickupExperienceEvent extends PlayerEvent implements CancellableEvent {
 
     private final ExperienceOrb experienceOrb;
     private short experienceCount;
 
     private boolean cancelled;
 
-    public PickupExperienceEvent(@NotNull ExperienceOrb experienceOrb) {
+    public PickupExperienceEvent(@NotNull Player player, @NotNull ExperienceOrb experienceOrb) {
+        super(player);
         this.experienceOrb = experienceOrb;
         this.experienceCount = experienceOrb.getExperienceCount();
     }

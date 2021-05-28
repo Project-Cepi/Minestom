@@ -14,7 +14,7 @@ import java.util.function.Predicate;
 public class EventListener<T extends Event> implements ListenerAttach<T> {
 
     private final Class<T> eventType;
-    private final Set<EventHandler> attach = new CopyOnWriteArraySet<>();
+    private final Set<EventHandler<? super T>> attach = new CopyOnWriteArraySet<>();
     private final Consumer<T> combined;
 
     private EventListener(Class<T> eventType, @NotNull Consumer<T> combined) {
@@ -43,7 +43,7 @@ public class EventListener<T extends Event> implements ListenerAttach<T> {
 
         private final Class<T> eventType;
 
-        private List<Predicate<T>> filters = new ArrayList<>();
+        private final List<Predicate<T>> filters = new ArrayList<>();
         private Consumer<T> handler;
 
         protected Builder(Class<T> eventType) {
