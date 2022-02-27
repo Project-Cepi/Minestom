@@ -19,6 +19,7 @@ import net.minestom.server.monitoring.TickMonitor;
 import net.minestom.server.network.ConnectionManager;
 import net.minestom.server.network.PacketProcessor;
 import net.minestom.server.network.socket.Server;
+import net.minestom.server.permission.PermissionManager;
 import net.minestom.server.recipe.RecipeManager;
 import net.minestom.server.scoreboard.TeamManager;
 import net.minestom.server.terminal.MinestomTerminal;
@@ -55,6 +56,7 @@ final class ServerProcessImpl implements ServerProcess {
     private final DimensionTypeManager dimension;
     private final BiomeManager biome;
     private final AdvancementManager advancement;
+    private final PermissionManager permission;
     private final BossBarManager bossBar;
     private final TagManager tag;
     private final Server server;
@@ -82,6 +84,7 @@ final class ServerProcessImpl implements ServerProcess {
         this.dimension = new DimensionTypeManager();
         this.biome = new BiomeManager();
         this.advancement = new AdvancementManager();
+        this.permission = new PermissionManager();
         this.bossBar = new BossBarManager();
         this.tag = new TagManager();
         this.server = new Server(packetProcessor);
@@ -148,6 +151,11 @@ final class ServerProcessImpl implements ServerProcess {
     @Override
     public @NotNull AdvancementManager advancement() {
         return advancement;
+    }
+
+    @Override
+    public @NotNull PermissionManager permission() {
+        return permission;
     }
 
     @Override

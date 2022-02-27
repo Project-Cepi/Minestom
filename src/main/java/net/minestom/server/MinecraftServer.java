@@ -341,8 +341,7 @@ public final class MinecraftServer {
     }
 
     public static PermissionManager getPermissionManager() {
-        checkInitStatus(permissionManager);
-        return permissionManager;
+        return serverProcess.permission();
     }
     
     public static ExtensionManager getExtensionManager() {

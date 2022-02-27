@@ -16,6 +16,7 @@ import net.minestom.server.monitoring.BenchmarkManager;
 import net.minestom.server.network.ConnectionManager;
 import net.minestom.server.network.PacketProcessor;
 import net.minestom.server.network.socket.Server;
+import net.minestom.server.permission.PermissionManager;
 import net.minestom.server.recipe.RecipeManager;
 import net.minestom.server.scoreboard.TeamManager;
 import net.minestom.server.thread.ThreadDispatcher;
@@ -89,6 +90,8 @@ public interface ServerProcess {
      * Handles registered advancements.
      */
     @NotNull AdvancementManager advancement();
+
+    @NotNull PermissionManager permission();
 
     /**
      * Handles registered boss bars.
