@@ -7,6 +7,8 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.lang.invoke.MethodHandles;
+import java.lang.invoke.VarHandle;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -40,10 +42,13 @@ non-sealed class EventNodeImpl<T extends Event> implements EventNode<T> {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public <E extends T> @NotNull ListenerHandle<E> getHandle(@NotNull Class<E> handleType) {
-        //noinspection unchecked
-        return (ListenerHandle<E>) handleMap.computeIfAbsent(handleType,
-                aClass -> new Handle<>(this, (Class<T>) aClass));
+        Handle<E> handle = (Handle<E>) handleMap.get(handleType);
+        if (handle != null) return handle;
+        var tmp = new Handle<>(this, (Class<T>) handleType);
+        handle = (Handle<E>) handleMap.putIfAbsent(handleType, tmp);
+        return handle != null ? handle : (ListenerHandle<E>) tmp;
     }
 
     @Override
@@ -216,6 +221,46 @@ non-sealed class EventNodeImpl<T extends Event> implements EventNode<T> {
         return parent;
     }
 
+    @Override
+    public String toString() {
+        return createStringGraph(createGraph());
+    }
+
+    Graph createGraph() {
+        synchronized (GLOBAL_CHILD_LOCK) {
+            List<Graph> children = this.children.stream().map(EventNodeImpl::createGraph).toList();
+            return new Graph(getName(), getEventType().getSimpleName(), getPriority(), children);
+        }
+    }
+
+    static String createStringGraph(Graph graph) {
+        StringBuilder buffer = new StringBuilder();
+        genToStringTree(buffer, "", "", graph);
+        return buffer.toString();
+    }
+
+    private static void genToStringTree(StringBuilder buffer, String prefix, String childrenPrefix, Graph graph) {
+        buffer.append(prefix);
+        buffer.append(String.format("%s - EventType: %s - Priority: %d", graph.name(), graph.eventType(), graph.priority()));
+        buffer.append('\n');
+        var nextNodes = graph.children();
+        for (Iterator<? extends @NotNull Graph> iterator = nextNodes.iterator(); iterator.hasNext(); ) {
+            Graph next = iterator.next();
+            if (iterator.hasNext()) {
+                genToStringTree(buffer, childrenPrefix + '\u251C' + '\u2500' + " ", childrenPrefix + '\u2502' + "   ", next);
+            } else {
+                genToStringTree(buffer, childrenPrefix + '\u2514' + '\u2500' + " ", childrenPrefix + "    ", next);
+            }
+        }
+    }
+
+    record Graph(String name, String eventType, int priority,
+                 List<Graph> children) {
+        public Graph {
+            children = children.stream().sorted(Comparator.comparingInt(Graph::priority)).toList();
+        }
+    }
+
     private void invalidateEventsFor(EventNodeImpl<? super T> node) {
         for (Class<? extends T> eventType : listenerMap.keySet()) {
             node.invalidateEvent(eventType);
@@ -229,7 +274,7 @@ non-sealed class EventNodeImpl<T extends Event> implements EventNode<T> {
     private void invalidateEvent(Class<? extends T> eventClass) {
         forTargetEvents(eventClass, type -> {
             Handle<? super T> handle = handleMap.get(type);
-            if (handle != null) handle.updated = false;
+            if (handle != null) Handle.UPDATED.setRelease(handle, false);
         });
         final EventNodeImpl<? super T> parent = this.parent;
         if (parent != null) parent.invalidateEvent(eventClass);
@@ -260,10 +305,21 @@ non-sealed class EventNodeImpl<T extends Event> implements EventNode<T> {
     }
 
     static final class Handle<E extends Event> implements ListenerHandle<E> {
+        private static final VarHandle UPDATED;
+
+        static {
+            try {
+                UPDATED = MethodHandles.lookup().findVarHandle(Handle.class, "updated", boolean.class);
+            } catch (NoSuchFieldException | IllegalAccessException e) {
+                throw new IllegalStateException(e);
+            }
+        }
+
         private final EventNodeImpl<E> node;
         private final Class<E> eventType;
         private Consumer<E> listener = null;
-        private volatile boolean updated;
+        @SuppressWarnings("unused")
+        private boolean updated; // Use the UPDATED var handle
 
         Handle(EventNodeImpl<E> node, Class<E> eventType) {
             this.node = node;
@@ -287,12 +343,12 @@ non-sealed class EventNodeImpl<T extends Event> implements EventNode<T> {
         }
 
         @Nullable Consumer<E> updatedListener() {
-            if (updated) return listener;
+            if ((boolean) UPDATED.getAcquire(this)) return listener;
             synchronized (GLOBAL_CHILD_LOCK) {
-                if (updated) return listener;
+                if ((boolean) UPDATED.getAcquire(this)) return listener;
                 final Consumer<E> listener = createConsumer();
                 this.listener = listener;
-                this.updated = true;
+                UPDATED.setRelease(this, true);
                 return listener;
             }
         }
@@ -324,7 +380,7 @@ non-sealed class EventNodeImpl<T extends Event> implements EventNode<T> {
             final boolean hasListeners = listenersArray.length > 0;
             final boolean hasMap = mappedListener != null;
             final boolean hasChildren = childrenListeners.length > 0;
-            if (listenersArray.length == 0 && mappedListener == null && childrenListeners.length == 0) {
+            if (!hasListeners && !hasMap && !hasChildren) {
                 // No listener
                 return null;
             }
@@ -409,31 +465,31 @@ non-sealed class EventNodeImpl<T extends Event> implements EventNode<T> {
                 final Handle<E> handle = handlers.get(handler);
                 if (handle != null) handle.call(event);
             };
-            if (filterList.length == 1) {
-                final var firstFilter = filterList[0];
-                // Common case where there is only one filter
-                return event -> mapper.accept(firstFilter, event);
-            } else if (filterList.length == 2) {
-                final var firstFilter = filterList[0];
-                final var secondFilter = filterList[1];
-                return event -> {
-                    mapper.accept(firstFilter, event);
-                    mapper.accept(secondFilter, event);
+            // Specialize the consumer depending on the number of filters to avoid looping
+            return switch (filterList.length) {
+                case 1 -> event -> mapper.accept(filterList[0], event);
+                case 2 -> event -> {
+                    mapper.accept(filterList[0], event);
+                    mapper.accept(filterList[1], event);
                 };
-            } else {
-                return event -> {
+                case 3 -> event -> {
+                    mapper.accept(filterList[0], event);
+                    mapper.accept(filterList[1], event);
+                    mapper.accept(filterList[2], event);
+                };
+                default -> event -> {
                     for (var filter : filterList) {
                         mapper.accept(filter, event);
                     }
                 };
-            }
+            };
         }
 
         void callListener(@NotNull EventListener<E> listener, E event) {
             EventListener.Result result = listener.run(event);
             if (result == EventListener.Result.EXPIRED) {
                 node.removeListener(listener);
-                this.updated = false;
+                UPDATED.setRelease(this, false);
             }
         }
     }

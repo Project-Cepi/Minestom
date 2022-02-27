@@ -1,29 +1,37 @@
 package net.minestom.server.thread;
 
-import net.minestom.server.instance.Chunk;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 @FunctionalInterface
 @ApiStatus.Experimental
-public interface ThreadProvider {
-    ThreadProvider PER_CHUNk = Object::hashCode;
-    ThreadProvider PER_INSTANCE = chunk -> chunk.getInstance().hashCode();
-    ThreadProvider SINGLE = chunk -> 0;
+public interface ThreadProvider<T> {
+    static <T> @NotNull ThreadProvider<T> counter() {
+        return new ThreadProvider<>() {
+            private final AtomicInteger counter = new AtomicInteger();
+
+            @Override
+            public int findThread(@NotNull T partition) {
+                return counter.getAndIncrement();
+            }
+        };
+    }
 
     /**
      * Performs a server tick for all chunks based on their linked thread.
      *
-     * @param chunk the chunk
+     * @param partition the partition
      */
-    int findThread(@NotNull Chunk chunk);
+    int findThread(@NotNull T partition);
 
     /**
      * Defines how often chunks thread should be updated.
      *
      * @return the refresh type
      */
-    default @NotNull RefreshType getChunkRefreshType() {
+    default @NotNull RefreshType refreshType() {
         return RefreshType.NEVER;
     }
 
@@ -32,16 +40,16 @@ public interface ThreadProvider {
      */
     enum RefreshType {
         /**
-         * Chunk thread is constant after being defined.
+         * Thread never change after being defined once.
+         * <p>
+         * Means that {@link #findThread(Object)} will only be called once for each partition.
          */
         NEVER,
         /**
-         * Chunk thread should be recomputed as often as possible.
+         * Thread is updated as often as possible.
+         * <p>
+         * Means that {@link #findThread(Object)} may be called multiple time for each partition.
          */
-        CONSTANT,
-        /**
-         * Chunk thread should be recomputed, but not continuously.
-         */
-        RARELY
+        ALWAYS
     }
 }

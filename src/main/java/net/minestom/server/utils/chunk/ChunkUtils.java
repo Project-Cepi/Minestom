@@ -37,7 +37,7 @@ public final class ChunkUtils {
         CompletableFuture<Void> completableFuture = new CompletableFuture<>();
         AtomicInteger counter = new AtomicInteger(0);
         for (long visibleChunk : chunks) {
-            // WARNING: if auto-load is disabled and no chunks are loaded beforehand, player will be stuck.
+            // WARNING: if autoload is disabled and no chunks are loaded beforehand, player will be stuck.
             instance.loadOptionalChunk(getChunkCoordX(visibleChunk), getChunkCoordZ(visibleChunk))
                     .thenAccept((chunk) -> {
                         OptionalCallback.execute(eachCallback, chunk);
@@ -93,8 +93,12 @@ public final class ChunkUtils {
      * @return the chunk X or Z based on the argument
      */
     public static int getChunkCoordinate(double xz) {
-        // Assume chunk horizontal size being 16 (4 bits)
-        return (int) Math.floor(xz) >> 4;
+        return getChunkCoordinate((int) Math.floor(xz));
+    }
+
+    public static int getChunkCoordinate(int xz) {
+        // Assume chunk/section size being 16 (4 bits)
+        return xz >> 4;
     }
 
     /**
@@ -139,8 +143,12 @@ public final class ChunkUtils {
         return (int) index;
     }
 
-    public static int getSectionAt(int y) {
-        return y / Chunk.CHUNK_SECTION_SIZE;
+    public static int getChunkCount(int range) {
+        if (range < 0) {
+            throw new IllegalArgumentException("Range cannot be negative");
+        }
+        final int square = range * 2 + 1;
+        return square * square;
     }
 
     public static void forDifferingChunksInRange(int newChunkX, int newChunkZ,
@@ -236,5 +244,19 @@ public final class ChunkUtils {
      */
     public static int blockIndexToChunkPositionZ(int index) {
         return (index >> 28) & 0xF; // 28-32 bits
+    }
+
+    /**
+     * Converts a global coordinate value to a section coordinate
+     *
+     * @param xyz global coordinate
+     * @return section coordinate
+     */
+    public static int toSectionRelativeCoordinate(int xyz) {
+        xyz %= 16;
+        if (xyz < 0) {
+            xyz += Chunk.CHUNK_SECTION_SIZE;
+        }
+        return xyz;
     }
 }

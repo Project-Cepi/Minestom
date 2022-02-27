@@ -8,7 +8,6 @@ import net.minestom.server.coordinate.Vec;
 import net.minestom.server.entity.Entity;
 import net.minestom.server.entity.Player;
 import net.minestom.server.event.EventDispatcher;
-import net.minestom.server.event.GlobalHandles;
 import net.minestom.server.event.instance.InstanceChunkLoadEvent;
 import net.minestom.server.event.instance.InstanceChunkUnloadEvent;
 import net.minestom.server.event.player.PlayerBlockBreakEvent;
@@ -17,19 +16,21 @@ import net.minestom.server.instance.block.Block;
 import net.minestom.server.instance.block.BlockHandler;
 import net.minestom.server.instance.block.rule.BlockPlacementRule;
 import net.minestom.server.network.packet.server.play.BlockChangePacket;
+import net.minestom.server.network.packet.server.play.BlockEntityDataPacket;
 import net.minestom.server.network.packet.server.play.EffectPacket;
 import net.minestom.server.network.packet.server.play.UnloadChunkPacket;
-import net.minestom.server.storage.StorageLocation;
 import net.minestom.server.utils.PacketUtils;
 import net.minestom.server.utils.async.AsyncUtils;
+import net.minestom.server.utils.block.BlockUtils;
 import net.minestom.server.utils.chunk.ChunkSupplier;
 import net.minestom.server.utils.chunk.ChunkUtils;
 import net.minestom.server.utils.validate.Check;
 import net.minestom.server.world.DimensionType;
-import net.minestom.server.world.biomes.Biome;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.jglrxavpok.hephaistos.nbt.NBTCompound;
+import space.vectrix.flare.fastutil.Long2ObjectSyncMap;
 
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
@@ -50,7 +51,7 @@ public class InstanceContainer extends Instance {
     private ChunkGenerator chunkGenerator;
     // (chunk index -> chunk) map, contains all the chunks in the instance
     // used as a monitor when access is required
-    private final Long2ObjectMap<Chunk> chunks = new Long2ObjectOpenHashMap<>();
+    private final Long2ObjectSyncMap<Chunk> chunks = Long2ObjectSyncMap.hashmap();
     private final Long2ObjectMap<CompletableFuture<Chunk>> loadingChunks = new Long2ObjectOpenHashMap<>();
 
     private final Lock changingBlockLock = new ReentrantLock();
@@ -124,7 +125,7 @@ public class InstanceContainer extends Instance {
             final BlockHandler previousHandler = previousBlock.handler();
 
             // Change id based on neighbors
-            final BlockPlacementRule blockPlacementRule = BLOCK_MANAGER.getBlockPlacementRule(block);
+            final BlockPlacementRule blockPlacementRule = MinecraftServer.getBlockManager().getBlockPlacementRule(block);
             if (blockPlacementRule != null) {
                 block = blockPlacementRule.blockUpdate(this, blockPosition, block);
             }
@@ -136,7 +137,14 @@ public class InstanceContainer extends Instance {
             executeNeighboursBlockPlacementRule(blockPosition);
 
             // Refresh player chunk block
-            chunk.sendPacketToViewers(new BlockChangePacket(blockPosition, block.stateId()));
+            {
+                chunk.sendPacketToViewers(new BlockChangePacket(blockPosition, block.stateId()));
+                var registry = block.registry();
+                if (registry.isBlockEntity()) {
+                    final NBTCompound data = BlockUtils.extractClientNbt(block);
+                    chunk.sendPacketToViewers(new BlockEntityDataPacket(blockPosition, registry.blockEntityId(), data));
+                }
+            }
 
             if (previousHandler != null) {
                 // Previous destroy
@@ -220,21 +228,18 @@ public class InstanceContainer extends Instance {
 
         EventDispatcher.call(new InstanceChunkUnloadEvent(this, chunk));
         // Remove all entities in chunk
-        getEntityTracker().chunkEntities(chunkX, chunkZ, EntityTracker.Target.ENTITIES, Entity::remove);
+        getEntityTracker().chunkEntities(chunkX, chunkZ, EntityTracker.Target.ENTITIES).forEach(Entity::remove);
         // Clear cache
-        synchronized (chunks) {
-            this.chunks.remove(index);
-        }
+        this.chunks.remove(index);
         chunk.unload();
-        UPDATE_MANAGER.signalChunkUnload(chunk);
+        var dispatcher = MinecraftServer.process().dispatcher();
+        dispatcher.deletePartition(chunk);
     }
 
     @Override
     public Chunk getChunk(int chunkX, int chunkZ) {
         final long index = ChunkUtils.getChunkIndex(chunkX, chunkZ);
-        synchronized (chunks) {
-            return chunks.get(index);
-        }
+        return chunks.get(index);
     }
 
     @Override
@@ -268,7 +273,7 @@ public class InstanceContainer extends Instance {
                 .whenComplete((chunk, throwable) -> {
                     // TODO run in the instance thread?
                     cacheChunk(chunk);
-                    GlobalHandles.INSTANCE_CHUNK_LOAD.call(new InstanceChunkLoadEvent(this, chunk));
+                    EventDispatcher.call(new InstanceChunkLoadEvent(this, chunk));
                     synchronized (loadingChunks) {
                         this.loadingChunks.remove(ChunkUtils.getChunkIndex(chunk));
                     }
@@ -284,13 +289,7 @@ public class InstanceContainer extends Instance {
 
     protected @NotNull CompletableFuture<@NotNull Chunk> createChunk(int chunkX, int chunkZ) {
         final ChunkGenerator generator = this.chunkGenerator;
-        Biome[] biomes = new Biome[Biome.getBiomeCount(getDimensionType())];
-        if (generator == null) {
-            Arrays.fill(biomes, MinecraftServer.getBiomeManager().getById(0));
-        } else {
-            generator.fillBiomes(biomes, chunkX, chunkZ);
-        }
-        final Chunk chunk = chunkSupplier.createChunk(this, biomes, chunkX, chunkZ);
+        final Chunk chunk = chunkSupplier.createChunk(this, chunkX, chunkZ);
         Check.notNull(chunk, "Chunks supplied by a ChunkSupplier cannot be null.");
         if (generator != null && chunk.shouldGenerate()) {
             // Execute the chunk generator to populate the chunk
@@ -314,8 +313,8 @@ public class InstanceContainer extends Instance {
 
     @Override
     public boolean isInVoid(@NotNull Point point) {
-        // TODO: customizable
-        return point.y() < -64;
+        // TODO: more customizable
+        return point.y() < getDimensionType().getMinY() - 64;
     }
 
     /**
@@ -378,7 +377,7 @@ public class InstanceContainer extends Instance {
      * Copies all the chunks of this instance and create a new instance container with all of them.
      * <p>
      * Chunks are copied with {@link Chunk#copy(Instance, int, int)},
-     * {@link UUID} is randomized, {@link DimensionType} is passed over and the {@link StorageLocation} is null.
+     * {@link UUID} is randomized and {@link DimensionType} is passed over.
      *
      * @return an {@link InstanceContainer} with the exact same chunks as 'this'
      * @see #getSrcInstance() to retrieve the "creation source" of the copied instance
@@ -387,13 +386,11 @@ public class InstanceContainer extends Instance {
         InstanceContainer copiedInstance = new InstanceContainer(UUID.randomUUID(), getDimensionType());
         copiedInstance.srcInstance = this;
         copiedInstance.lastBlockChangeTime = lastBlockChangeTime;
-        synchronized (chunks) {
-            for (Chunk chunk : chunks.values()) {
-                final int chunkX = chunk.getChunkX();
-                final int chunkZ = chunk.getChunkZ();
-                final Chunk copiedChunk = chunk.copy(copiedInstance, chunkX, chunkZ);
-                copiedInstance.cacheChunk(copiedChunk);
-            }
+        for (Chunk chunk : chunks.values()) {
+            final int chunkX = chunk.getChunkX();
+            final int chunkZ = chunk.getChunkZ();
+            final Chunk copiedChunk = chunk.copy(copiedInstance, chunkX, chunkZ);
+            copiedInstance.cacheChunk(copiedChunk);
         }
         return copiedInstance;
     }
@@ -445,9 +442,7 @@ public class InstanceContainer extends Instance {
      */
     @Override
     public @NotNull Collection<@NotNull Chunk> getChunks() {
-        synchronized (chunks) {
-            return List.copyOf(chunks.values());
-        }
+        return chunks.values();
     }
 
     /**
@@ -508,11 +503,13 @@ public class InstanceContainer extends Instance {
                     final int neighborX = blockPosition.blockX() + offsetX;
                     final int neighborY = blockPosition.blockY() + offsetY;
                     final int neighborZ = blockPosition.blockZ() + offsetZ;
+                    if (neighborY < getDimensionType().getMinY() || neighborY > getDimensionType().getTotalHeight())
+                        continue;
                     final Chunk chunk = getChunkAt(neighborX, neighborZ);
                     if (chunk == null) continue;
 
                     final Block neighborBlock = chunk.getBlock(neighborX, neighborY, neighborZ);
-                    final BlockPlacementRule neighborBlockPlacementRule = BLOCK_MANAGER.getBlockPlacementRule(neighborBlock);
+                    final BlockPlacementRule neighborBlockPlacementRule = MinecraftServer.getBlockManager().getBlockPlacementRule(neighborBlock);
                     if (neighborBlockPlacementRule == null) continue;
 
                     final Vec neighborPosition = new Vec(neighborX, neighborY, neighborZ);
@@ -537,9 +534,8 @@ public class InstanceContainer extends Instance {
 
     private void cacheChunk(@NotNull Chunk chunk) {
         final long index = ChunkUtils.getChunkIndex(chunk);
-        synchronized (chunks) {
-            this.chunks.put(index, chunk);
-        }
-        UPDATE_MANAGER.signalChunkLoad(chunk);
+        this.chunks.put(index, chunk);
+        var dispatcher = MinecraftServer.process().dispatcher();
+        dispatcher.createPartition(chunk);
     }
 }
